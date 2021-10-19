@@ -1,0 +1,60 @@
+import React, { useEffect, useState } from 'react'
+import './style.css'
+import { useHistory } from 'react-router-dom'
+import { useWindowSize } from '../../../../components/utils/useWindowSize'
+
+const MenuItem = ({ config, selected, menuState }) =>{
+
+    const screenSize = useWindowSize()
+    const { title, icon, path, pages } = config 
+    const [ isExpanded, setIsExpanded ] = useState(false)
+    console.log(config)
+    const history = useHistory()
+ 
+    useEffect(()=>{
+        if(menuState.show === false){
+            setIsExpanded(false)
+        }
+    },[menuState.show]) 
+
+    const handleClick = (to, childs) =>{
+        to && history.push(to)
+        if(childs?.length > 1){
+            
+            if(menuState.show === false){ menuState.setShow(true) }
+            setIsExpanded(!isExpanded)
+        }
+        else{
+            if (screenSize.width < 756) {
+               menuState.setShow(false)
+            }
+        }
+    }
+
+    return (
+    <li className={`common-menu-item ${selected ? 'selected' : ''}`} > 
+    
+        <span  className="common-menu-item-row" onClick={() => handleClick(path || pages[0].path, pages)} >
+            <span className="common-menu-ico"> {icon && icon}  </span>
+            <span> {title} </span>
+        </span>
+
+
+       { (pages && pages.length > 0 ) &&
+            <div className={`common-menu-item-body ${isExpanded? 'show' : ""}`}>
+               {pages.map((c,i)=>{
+                    if(!c.hide){
+                        return (
+                            <span className={`common-menu-item-body-sub-item`} key={i}  onClick={ () => handleClick(c.path, null)} > 
+                                <span> {c.icon} </span>
+                            <span> {c.title} </span>
+                        </span> )
+                    }
+                })}  
+            </div>
+        } 
+
+    </li>)
+}
+
+export default MenuItem

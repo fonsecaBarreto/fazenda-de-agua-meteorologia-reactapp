@@ -1,0 +1,93 @@
+/* Header */
+.primary-header{
+    height: var(--header-height-desktop);
+    background-color: white;
+}
+
+.primary-header-content{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.primary-header-content > section {
+   height: 100%;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   column-gap: 12px;
+
+}
+
+.primary-header-content .primary-header-title{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+}
+
+.primary-header-content .primary-header-title > .primary-header-title-label{
+    font-size: 16px;
+    white-space: normal;
+    text-align: left;
+    height: 1em;
+    display: block; 
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.primary-header-content .primary-header-title > .primary-header-title-bread-crumbs{
+    font-size: 12px;
+    white-space: normal;
+    text-align: left;
+    height: 15px;
+    display: block; 
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.primary-header-content .primary-header-back-btn{
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    height: calc(100% - 12px); width: 42px;
+    background-color: rgba(255, 255, 255, 0);
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+    transition: all .2s ease-in
+}
+
+.primary-header-back-btn:hover{
+    background-color: rgba(255, 255, 255, 0.199);
+    box-shadow: inset 0px 0px 2px 1px #0002;
+    color: #000;
+}
+
+@media only screen and (max-width: 1024px){
+    .primary-header{
+        height: var(--header-height-mobile);
+        background-color: var(--main-color);
+  
+    }
+
+    .primary-header-content .primary-header-title, .primary-header-back-btn{
+        color: white!important;
+    }
+
+}
+
+

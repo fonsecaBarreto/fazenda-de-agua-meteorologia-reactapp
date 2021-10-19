@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import './assets/styles/root.css'
+import './assets/styles/fonts.css'
+import './App.css'
+import Routes from './routes/index.js'
 
-function App() {
+import { useSelector, useDispatch } from 'react-redux'
+import { setUser } from './store/reducers/global/actions'
+
+function App(){
+  const dispatch = useDispatch()
+  const { user } = useSelector((state)=> state.global)
+  useEffect(()=>{
+    dispatch(setUser(
+      { 
+        name: "Nome teste",
+        username:"Nome do Usuario",
+        role: 1
+      }))
+  },[])
+  const toggle = () =>{
+    dispatch(setUser( { ...user, role: user.role ? 0 : 1 }))
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      { user && <div className="role-frame">
+        <button onClick={toggle}> { (user?.role === 0) ? "Padrao" : "Admin" }  </button>
+      </div>}
+      <Routes user={user}></Routes>   
     </div>
   );
+
 }
 
-export default App;
+export default App

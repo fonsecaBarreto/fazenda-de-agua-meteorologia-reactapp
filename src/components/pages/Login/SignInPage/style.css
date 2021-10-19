@@ -1,0 +1,36 @@
+.login-box{
+     width: 400px;
+     margin: auto;
+     margin-top: 92px;
+     height: fit-content;
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+
+}
+
+.login-box img.logo-image{
+     height: 100px;
+     width: 100%;
+     object-fit: contain;
+     margin: auto;
+     position: relative;
+}
+
+@media screen and (max-width:960px){
+     .login-box{
+          top: 0;bottom: 0; right: 0;left: 0;
+          width: 100%;
+     }
+     
+}
+
+.login-err-message{
+     color: rgb(182, 12, 12);
+     text-align: center;
+     display: flex;
+     gap: 6px;
+     font-size: 15px;
+     align-content: center;
+     justify-content: center;
+}

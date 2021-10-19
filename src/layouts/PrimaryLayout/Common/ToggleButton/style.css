@@ -1,0 +1,41 @@
+
+.common-toggle-button{
+    display: flex; align-items: center; justify-content: center; 
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 22px;
+    color: #efefef;
+    border: solid 1px #efefef;
+    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.common-toggle-button:hover{
+    color: white;
+    border: solid 1px #eee;
+    color: rgb(255, 255, 255);
+    border: solid 1px rgb(255, 255, 255);
+}
+
+
+@media only screen and (min-width: 1024px){
+    .common-toggle-button{
+        display: none;
+    }
+    .common-toggle-button.toggle-on-desktop{
+        display: flex
+    }
+    
+}
+
+
+@media only screen and (max-width: 1024px){
+    .common-toggle-button.toggle-on-desktop{
+        display: none
+    }
+    
+}
+
+

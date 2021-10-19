@@ -1,0 +1,66 @@
+
+:root {
+    --main-color: #302b63;
+    --main-light-color: #f12711;
+    --main-bg-color: #E3EDFF;
+    --second-color: rgb(8, 62, 122);
+
+    --header-height-desktop: 60px;
+    --header-height-mobile: 60px;
+
+    --menu-width: 76px;
+    --menu-width-expanded: 300px;
+
+}
+
+
+
+body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 
+}
+
+/*  */
+.app-container{
+    width: 100%;
+    max-width: 1224px;
+    padding: 0 20px;
+    margin: auto;
+}
+  
+  .app-padding{  padding: 0 20px;  }
+
+  
+.flex-row, .flex-column{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 5px;
+}
+  
+.flex-aln-center { align-items: center;  }
+.flex-column{  flex-direction: column; }
+.flex-row { flex-direction: row; }
+  
+@media only screen and (min-width: 1025px){
+    .mobile-only{
+        display: none!important;
+    }
+}
+
+@media only screen and (max-width: 1024px){
+    .desktop-only{
+        display: none!important;
+    }
+    .app-container, .app-padding { padding: 0 10px; }
+
+}
+
+.txt-center{
+    text-align: center;
+}
+
+.ml-auto  { margin-left: auto; }
+.mr-0 { margin-right: 0; }
