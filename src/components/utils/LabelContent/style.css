@@ -1,0 +1,15 @@
+
+.app-label-content{
+     display: flex;
+     flex-direction: row;
+     gap: 8px
+}
+
+.app-label-content > :nth-child(1){
+     font-weight: bold;
+     font-size: .9em;
+}
+
+.app-label-content > :nth-child(2){
+     font-size: 1em;
+}

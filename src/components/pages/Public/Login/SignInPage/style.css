@@ -1,3 +1,4 @@
+
 .login-box{
      width: 400px;
      margin: auto;
@@ -10,14 +11,21 @@
 }
 
 .login-box img.logo-image{
-     height: 100px;
+     height: 90px;
      width: 100%;
      object-fit: contain;
      margin: auto;
      position: relative;
 }
 
-@media screen and (max-width:960px){
+.login-quote{
+     color: #888;
+     font-size: 14px;
+     text-align: center;
+     margin-top: 10px;
+}
+
+@media screen and (max-width:756px){
      .login-box{
           top: 0;bottom: 0; right: 0;left: 0;
           width: 100%;

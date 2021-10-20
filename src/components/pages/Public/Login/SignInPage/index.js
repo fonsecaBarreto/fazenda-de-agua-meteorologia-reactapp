@@ -1,10 +1,14 @@
-import React, { useState } from "react"
-import FormRow from '../../../utils/FormRow'
+import React, { useState, useEffect } from "react"
 import './style.css'
-import LogoImage from '../../../../assets/images/heavy-rain.png'
-import { loginServices } from '../../../../services/login-service'
-import LoginCustomButton from "../LoginCustomButton"
+
+import { useHistory } from 'react-router-dom'
 import { AiFillWarning }from 'react-icons/ai'
+
+import { loginServices } from '../../../../../services/login-service'
+import LogoImage from '../../../../../assets/images/heavy-rain.png'
+import FormRow from '../../../../utils/FormRow'
+import LoginCustomButton from "../LoginCustomButton"
+
 const INITIAL_DATA = {
      username: "",
      password: "",
@@ -17,14 +21,12 @@ const InputsState = () =>{
      const [ errors, setErrors ] = useState({});
 
      const handleInputs = (key,value, capital) => {
-          if(capital){
+          if(capital)
               value = value.replace(/\b\w/g, c => c.toUpperCase());
-          }
           setInputs(prev => ({  ...prev,  [key]:value  }))
       }
 
       return { 
-
           inputs: {
                get: inputs, 
                set: setInputs,
@@ -40,13 +42,22 @@ const InputsState = () =>{
 }
 
 const SignInPage = () =>{
-
+     const history = useHistory()
      const { inputs, errors } = InputsState()
+
+     useEffect(()=>{
+          if(!history.location.search ) return;
+          const err = history.location.search.split("?e=")[1]
+          if(err) 
+               errors.setErrMessage(err.replace(/%20/g, " "));
+     },[history, history.location])
      
      const submit_signIn =() =>{
           errors.clear()
           return loginServices.signin(inputs.get)
-          .then(()=>{ alert("Bem vindo") })
+          .then(()=>{ 
+               return history.push("/")
+          })
           .catch(err=>{
                errors.setErrMessage(err.message)
                if(err.params)errors.set(err.params);
@@ -58,7 +69,7 @@ const SignInPage = () =>{
 
                     <header>
                          <img className="logo-image" src={LogoImage} alt="logo"/>
-                         <h3 className="txt-center"> Fazenda de Agua Metereologia</h3>
+                         <h3 className="txt-center styled-header"> Meteorologia - Fazendas de água</h3>
                     </header>
 
                     <section>
@@ -84,6 +95,18 @@ const SignInPage = () =>{
                               <AiFillWarning></AiFillWarning>
                               {errors.errMessage} 
                          </span>}
+
+                    <div className="login-quote">
+                         <span>
+                              Aplicação em estagio de <b>desenvolvimento. </b>
+                              Deverá servir como interface visual para as variadas categorias de usuários. 
+                              integrada ao Serviços do projeto: <br/> <b>Meteorologia - Fazendas de água</b>
+                              <p>
+                                   <a target="_blank" href="https://github.com/fonsecaBarreto/fazendas-de-agua-meteorologia-server"> Saiba Mais </a>
+                              </p>
+                           
+                         </span>
+                    </div>
 
                </div>
           </div>

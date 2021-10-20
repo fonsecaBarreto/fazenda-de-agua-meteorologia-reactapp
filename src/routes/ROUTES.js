@@ -1,44 +1,48 @@
 import React from 'react'
-import { AiFillDashboard, AiOutlineUnorderedList } from 'react-icons/ai'
-import { HiOutlineLocationMarker }from 'react-icons/hi'
-
-import { FaTruck } from 'react-icons/fa'
-import { AiFillHome } from 'react-icons/ai'
-import { CgProfile }from 'react-icons/cg'
-
-
-import AdminsDashBoard from '../components/pages/AdminsDashBoard'
-import ListAddresses from '../components/pages/Addresses/Lists'
-
-const componenetTest =() =>{
+import AdminsDashBoard from '../components/pages/Admins/DashBoard'
+import ListAddresses from '../components/pages/Admins/Addresses/ListPage'
+import { Link } from 'react-router-dom'
+const InicioComponent =() =>{
      return (<div>
-         Component Teste
+         Inicio Aqui
+         <Link to="/outro"> Outro</Link>
      </div>)
- }
+}
  
- const InicioComponent =() =>{
-     return (<div>
-         Inicio
-     </div>)
- }
- 
+const Outro =() =>{
+    return (<div>
+        Outro Aqui
+        <Link to="/inicio"> Inico</Link>
+    </div>)
+}
+export const admin = {
+    prefix: "/admin",
+    routes:[
+        { componenet: AdminsDashBoard, path: "/dashboard", title: "Painel Administrativo" },
 
-export const ROUTES = {
+        { componenet: ListAddresses, path: "/addresses", parent: "/dashboard", title:"Endereços" },
+        { componenet: ListAddresses, path: "/addresses/create", parent: "/addresses", title: "Criar Endereços" },
+        { componenet: ListAddresses, path: "/addresses/update", parent: "/addresses", title: "Atualizar Endereço" },
 
-     home: {
-         title: "Inicio", icon: <AiFillHome></AiFillHome>,
-         componenet: InicioComponent, path: "/inicio",
-     },
- 
-     /*  */
- 
-     panel: {
-         title: "Painel Administrativo", icon: <AiFillDashboard></AiFillDashboard>,
-         componenet: AdminsDashBoard, path: "/admin/panel",
-     },
-     
-     address_list: {
-         title: "Endereços Cadastrados", icon: <HiOutlineLocationMarker></HiOutlineLocationMarker>,
-         componenet: ListAddresses, path: "/admin/addresses"
-     }
- }
+        { componenet: ListAddresses, path: "/users", parent: "/dashboard", title: "Usuarios" },
+        { componenet: ListAddresses, path: "/users/create", parent: "/users", title: "Criar Usuario "},
+        { componenet: ListAddresses, path: "/users/update", parent: "/users", title:"Atualizar Usuario" }
+    ]
+}
+
+export const basic = {
+    prefix: "",
+    routes:[    
+        { componenet: InicioComponent, path: "/inicio", title: "Inicio" },
+        { componenet: Outro, path: "/outro", title: "Outro" },
+    ]
+}
+
+export const getRoutesList = () =>{
+   return [  
+       ...admin.routes.map((r)=>({ ...r, access:"admin_only", path:`${admin.prefix}${r.path}`, parent: r.parent ? `${admin.prefix}${r.parent}` : null })),
+       ...basic.routes.map((r)=>({ ...r, access:"basic_only",path:`${basic.prefix}${r.path}`, parent: r.parent ? `${basic.prefix}${r.parent}` : null }))
+    ];
+}
+
+export const routes = [ admin, basic ]

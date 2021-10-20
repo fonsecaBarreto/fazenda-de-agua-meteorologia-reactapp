@@ -1,5 +1,5 @@
 import './style.css'
-import LoadingImage from '../../../../assets/images/loading.svg'
+import LoadingImage from '../../../../../assets/images/loading.svg'
 import { useState } from 'react'
 const LoginCustomButton = ({children, width="100%", onClick}) =>{
      const [ loading, setLoading ] = useState(false)
@@ -10,7 +10,7 @@ const LoginCustomButton = ({children, width="100%", onClick}) =>{
      }
      return (
           <button className="login-custom-button" style={{width: width}} onClick={handleOnClick}> 
-               <span> {children} </span>
+               <span> {loading ? "Enviando...": children} </span>
                { loading && <img className="loading-spin" src={LoadingImage} alt="loading"></img>}
            </button>
      )

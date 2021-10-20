@@ -1,8 +1,26 @@
+body{
+  font-family: "Montserrat", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .App, .App * {
   box-sizing: border-box;
   height: fit-content;
-  font-family: "Montserrat", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.App.loading::before{
+  content: "";
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  margin: auto;
+  width: calc(100vw); height: calc(100vh);
+  background-color: var(--main-bg-color);
+  background-image: url(./assets/images/loading.svg); 
+  background-repeat: no-repeat;
+  background-size: 140px;
+  background-position: center;
+  z-index: 9999999;
+}  
+
 
 .role-frame{
   display: flex;

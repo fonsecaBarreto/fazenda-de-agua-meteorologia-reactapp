@@ -2,8 +2,12 @@ import React from 'react'
 import './style.css'
  import UserImage from '../../../../assets/images/user.webp' 
 import { ImExit } from 'react-icons/im'
-
-const UserComponent = ({menuState}) =>{
+import { loginServices } from '../../../../services/login-service'
+const UserRoles = {
+    0: "Cliente",
+    1: "Administrador"
+}
+const UserComponent = ({menuState, user}) =>{
     const handleClick = () =>{
         if(menuState.show == false ){
             menuState.setShow(true)
@@ -12,11 +16,11 @@ const UserComponent = ({menuState}) =>{
     return (
         <div className="common-menu-user-component" onClick={handleClick}>
             <img src={UserImage}/> 
-            { menuState.show == true && 
+            { (menuState.show == true &&  user )&& 
                 <React.Fragment>
-                    <span> Nome da Pessoa asdasd ada asdas dasd ad ad asd asd as dasd asdasdasdas asd ads </span>
-                    <span> Administrador </span>
-                    <button> <ImExit></ImExit>  Sair </button>
+                    <span> {user.name || "Nome do Usuario"} </span>
+                    <span> { UserRoles[user.role] || "Visitante"} </span>
+                    <button onClick={loginServices.logout}> <ImExit></ImExit>  Sair </button>
                 </React.Fragment>
             }
         </div>

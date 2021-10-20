@@ -1,76 +1,51 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 /* LAOUT */
 import PrimaryLayout from '../layouts/PrimaryLayout';
 /* DEPENDENCIES */
+import SignInPage from '../components/pages/Public/Login/SignInPage'
+import { getRoutesList} from './ROUTES'
 import UseLocationCallBack from '../components/utils/UseLocationCallBack'
 import RouterHandler from './routerHandler'
-import { ROOT_STRUCT, ADMIN_PAGES, BASIC_PAGES } from './PAGES_MANIFEST'
-import { ROUTES } from './ROUTES'
-
-import SignInPage from '../components/pages/Login/SignInPage'
+import Guard from './RouteGuard'
 
 function Routes({user}){
 
-	const [ pathname, setPathname ] = useState('')
-	const [ struct, setStruct ] = useState(()=> ROOT_STRUCT );
- 	const { currentPage, getCurrentPage } = RouterHandler(struct)
-
-	const RenderedPages = Object.keys(ROUTES).map((p,i)=>{
-		const { path, componenet: Component } = ROUTES[p]
+	const RenderedPages = getRoutesList().map((r,i)=>{
+		const { path, access, componenet: Component, role } = r;
 		return (
-			<Route path={path} exact key={i}>  
+			<Guard path={path} exact key={i} access={access}>  
 				<Component> </Component>
-			</Route>
-		)
+			</Guard> 
+		)	 
 	});
 
-	useEffect(()=>{ BuildLayout() },[ user ])
-	useEffect(()=>{
-		if(!pathname) return;
-		getCurrentPage(pathname);
-	},[ pathname, struct ])
+	const [ pathname, setPathname ] = useState('');
+ 	const { currentPage } = RouterHandler(pathname, getRoutesList()) 
 
-	const BuildLayout = () =>{
-		
-		const struct= { ...ROOT_STRUCT }
-		if(user){
-			switch(user.role){
-				case 0 :
-					struct.pages =[ ...struct.pages, ...BASIC_PAGES ];
-				;break;
-				case 1 : 
-					struct.pages =[ ...struct.pages, ...ADMIN_PAGES ]	
-				;break;
-				default: struct.pages =[ ...struct.pages ];break;
-			}
-		}
-		setStruct(struct)
-	}
-
-
-	const locationChange = (location) =>{
-		setPathname(location.pathname)
-	}
+	const locationChange = (location) =>{ setPathname(location.pathname) }
 
 	return ( 
 		<Router>
+
 			<UseLocationCallBack callback={locationChange}></UseLocationCallBack>   
+		
 			<Switch>
 				<Route path="/" exact> <Redirect to="/inicio" /> </Route>
-				<Route path="/admin" exact> <Redirect to="/admin/panel" /> </Route>
-				<Route path="/login"> <SignInPage></SignInPage> </Route>
-				
-				<PrimaryLayout struct={ struct } currentPage={currentPage}>
-					{ RenderedPages }
-				</PrimaryLayout> 
+				<Route path="/admin" exact> <Redirect to="/admin/dashboard" /> </Route>
+				<Route path="/login"> <SignInPage></SignInPage> </Route> 
 
-				
+				<PrimaryLayout currentPage={currentPage}>  
+					<Switch>
+						{ RenderedPages }
+					</Switch>
+				</PrimaryLayout> 
+		
+
 			</Switch> 
 
 		</Router>
 	)
+
 }
-
 export default Routes
-

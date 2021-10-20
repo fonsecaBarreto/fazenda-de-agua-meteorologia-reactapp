@@ -6,21 +6,17 @@ import { useWindowSize } from '../../../../components/utils/useWindowSize'
 const MenuItem = ({ config, selected, menuState }) =>{
 
     const screenSize = useWindowSize()
-    const { title, icon, path, pages } = config 
-    const [ isExpanded, setIsExpanded ] = useState(false)
-    console.log(config)
     const history = useHistory()
+    const [ isExpanded, setIsExpanded ] = useState(false)
+    const { label, icon, to, childs } = config 
  
     useEffect(()=>{
-        if(menuState.show === false){
-            setIsExpanded(false)
-        }
+        if(menuState.show === false){ setIsExpanded(false) }
     },[menuState.show]) 
 
     const handleClick = (to, childs) =>{
         to && history.push(to)
         if(childs?.length > 1){
-            
             if(menuState.show === false){ menuState.setShow(true) }
             setIsExpanded(!isExpanded)
         }
@@ -34,13 +30,13 @@ const MenuItem = ({ config, selected, menuState }) =>{
     return (
     <li className={`common-menu-item ${selected ? 'selected' : ''}`} > 
     
-        <span  className="common-menu-item-row" onClick={() => handleClick(path || pages[0].path, pages)} >
+        <span  className="common-menu-item-row" onClick={() => handleClick(to, childs)} >
             <span className="common-menu-ico"> {icon && icon}  </span>
-            <span> {title} </span>
+            <span> {label} </span>
         </span>
 
 
-       { (pages && pages.length > 0 ) &&
+      {/*  { (pages && pages.length > 0 ) &&
             <div className={`common-menu-item-body ${isExpanded? 'show' : ""}`}>
                {pages.map((c,i)=>{
                     if(!c.hide){
@@ -53,7 +49,7 @@ const MenuItem = ({ config, selected, menuState }) =>{
                 })}  
             </div>
         } 
-
+ */}
     </li>)
 }
 

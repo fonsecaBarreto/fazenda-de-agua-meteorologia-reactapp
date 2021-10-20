@@ -9,14 +9,14 @@ const MenuState = () =>{
     const toToggle = () => { setShow(!show)  }
     return { show, setShow, toToggle}
 }
-const PrimaryLayout = ({ children, struct, currentPage }) =>{
+const PrimaryLayout = ({ children, currentPage }) =>{
     
     const menuState = MenuState()
 
     return (
         <div className="primary-layout">
 
-            <PrimaryMenu menuState={menuState} struct={struct} currentPage={currentPage}> </PrimaryMenu>
+            <PrimaryMenu menuState={menuState} > </PrimaryMenu>
 
             <PrimaryHeader menuState={menuState} currentPage={currentPage} ></PrimaryHeader> 
 
