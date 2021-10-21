@@ -1,15 +1,21 @@
 
 .app-label-content{
-     display: flex;
-     flex-direction: row;
-     gap: 8px
+     font-size: 15px;
+     width: 100%;
+     line-height: 15px;
+     white-space: normal;
+     text-align: left;
+     max-height: 30px;
+     display: block; 
+     display: -webkit-box;
+     -webkit-line-clamp: 2;
+     -webkit-box-orient: vertical;
+     overflow: hidden;
+     text-overflow: ellipsis;
 }
 
-.app-label-content > :nth-child(1){
+
+.app-label-content > span:nth-child(1){
      font-weight: bold;
-     font-size: .9em;
-}
-
-.app-label-content > :nth-child(2){
-     font-size: 1em;
+     margin-right: 6px;
 }

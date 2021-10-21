@@ -26,6 +26,10 @@ const SelectInput = ({s, n, p, list}) => {
      </select>)
 }
 
+const ViewBox = ({s, n }) => {
+     return (<input disabled={true} type={'text'} value={s.data.get[n].label} ></input>)
+}
+
 export const InputAdapter = ({state, name, label, type = "text", placeholder, list}) =>{
      if(!state || !name) throw new Error("001")
 
@@ -38,6 +42,8 @@ export const InputAdapter = ({state, name, label, type = "text", placeholder, li
                          <TextAreaInput s={state} n={name} p={placeholder}></TextAreaInput>
                     : type === "select" ?
                          <SelectInput s={state} n={name} p={placeholder} list={list}></SelectInput>
+                    :  type === "viewbox" ?
+                         <ViewBox s={state} n={name}></ViewBox>
                     :  <span> - </span>
                }
           </FormRow>

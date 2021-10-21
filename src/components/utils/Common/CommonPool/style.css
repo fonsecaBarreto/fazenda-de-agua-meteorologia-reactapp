@@ -1,14 +1,44 @@
 .common-pool {
      height: fit-content;
      display: grid;
-     grid-template-columns: 1fr 1fr;
      grid-template-rows: auto;
      width: 100%;
      gap: 8px;
 }
 
+.common-pool.lg-1-size {
+     grid-template-columns: 1fr;
+}
+.common-pool.lg-2-size {
+     grid-template-columns: repeat(2, 1fr);
+}
+.common-pool.lg-3-size {
+     grid-template-columns: repeat(3, 1fr);
+}
+
 @media screen and (max-width: 1024px) {
-     .common-pool {
+
+     .common-pool.md-1-size {
           grid-template-columns: 1fr;
+     }
+     .common-pool.md-2-size {
+          grid-template-columns: repeat(2, 1fr);
+     }
+     .common-pool.md-3-size {
+          grid-template-columns: repeat(3, 1fr);
+     }
+}
+
+
+@media screen and (max-width: 756px) {
+
+     .common-pool.sm-1-size {
+          grid-template-columns: 1fr;
+     }
+     .common-pool.sm-2-size {
+          grid-template-columns: repeat(2, 1fr);
+     }
+     .common-pool.sm-3-size {
+          grid-template-columns: repeat(3, 1fr);
      }
 }

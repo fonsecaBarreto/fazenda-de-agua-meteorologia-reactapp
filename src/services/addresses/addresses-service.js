@@ -7,13 +7,16 @@ const addressesApi = MakeApiSettings(`${global.base_url}/addresses`, errorHandle
 
 export const addressesServices = {
 
-     list:async () => {
-          const { data } = await addressesApi.send({ method: "get", url:"/" }) 
-          store.dispatch(setAddresses(data))
+     list:async (view = null) => {
+          const url = view === "labelView" ? `/?v=listview` : '/'
+          const { data } = await addressesApi.send({ method: "get", url }) 
+          if(!view) store.dispatch(setAddresses(data));
+          return data
      },
      
-     find:async (id) => {
-          const { data } = await addressesApi.send({ method: "get", url:`/${id}` }) 
+     find:async (id, view=null) => {
+          const url = view === "labelview" ? `/${id}?v=labelview` : `/${id}` 
+          const { data } = await addressesApi.send({ method: "get", url }) 
           return data
      },
 

@@ -10,10 +10,7 @@
 
     --menu-width: 76px;
     --menu-width-expanded: 300px;
-
 }
-
-
 
 body {
     margin: 0;
@@ -29,9 +26,8 @@ body {
     margin: auto;
 }
   
-  .app-padding{  padding: 0 20px;  }
+.app-padding{  padding: 0 20px;  }
 
-  
 .flex-row, .flex-column{
     display: flex;
     flex-direction: row;
@@ -60,6 +56,10 @@ body {
 
 .txt-center{
     text-align: center;
+}
+.txt-muted{
+    color: #444;
+    font-size: 14px;
 }
 
 .ml-auto  { margin-left: auto; }

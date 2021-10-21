@@ -13,15 +13,16 @@ function PrimaryHeader ({menuState, currentPage}){
     const history = useHistory();
     
     const resolveBread = () =>{
-       const breadCrumbs = currentPage.breadCrumbs
-      return (
+        const {breadCrumbs} = currentPage
+        return (
             <React.Fragment>
-                {  breadCrumbs.map((b,i)=> ( <Link key={i} to={b.value}>
+                {  breadCrumbs.map((b,i)=> ( <Link key={i} to={b.value.to}>
                         <IoIosArrowForward></IoIosArrowForward>  {b.label}
                 </Link> ))}
             </React.Fragment>
         )
     } 
+
 
     const goBack = () =>{
 
@@ -29,17 +30,18 @@ function PrimaryHeader ({menuState, currentPage}){
         if(currentPage && currentPage.breadCrumbs && currentPage.breadCrumbs.length > 0 ){
             path = currentPage.breadCrumbs[currentPage.breadCrumbs.length - 2]
         }
-        return history.push(path.value)
-    }
+        return history.push(path.value.to) 
+    } 
 
     return (
         <header className="primary-header">
             <div className="primary-header-content">
               
-                <section>
+               <section>
 
                     <ToggleButton onClick={menuState.toToggle}></ToggleButton>
-                    { currentPage && 
+        
+                   { currentPage && 
                         <React.Fragment>
                             { currentPage.breadCrumbs.length > 1 && <button className="primary-header-back-btn desktop-only" onClick={goBack}> 
                                 <IoIosArrowBack></IoIosArrowBack>
@@ -48,11 +50,11 @@ function PrimaryHeader ({menuState, currentPage}){
 
                             <div className="primary-header-title">
                                 { currentPage.title && <span className="primary-header-title-label"> { currentPage.title } </span>} 
-                                { currentPage.breadCrumbs && <span className="primary-header-title-bread-crumbs desktop-only">{resolveBread()}</span>} 
+                              { currentPage.breadCrumbs && <span className="primary-header-title-bread-crumbs desktop-only">{resolveBread()}</span>} 
                             </div>
                         </React.Fragment>
-                    }
-                </section>
+                    } 
+                </section> 
             </div>
         </header>
     )

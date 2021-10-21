@@ -1,71 +1,58 @@
 import './style.css'
+import LocationImage from '../../../../../assets/images/addresses/location.svg'
 import { CommonGrid, CommonToolBar, CommonForm, CommonPool } from '../../../../utils/Common'
-import { StateAdapter, InputAdapter } from '../../../../utils/Adapters'
-import { addressesServices } from '../../../../../services/addresses/addresses-service'
-import { UFS } from '../UFS.json'
 import { Handler as notify } from '../../../../global/Notifications'
 import { useEffect, useState } from 'react'
-import { useHistory, useLocation } from 'react-router'
-import queryString from 'query-string';
+
 import LabelContent from '../../../../utils/LabelContent'
 import LoadingComponenet from '../../../../utils/LoadingComp'
 
+import { addressesServices } from '../../../../../services/addresses/addresses-service'
+import StationItem from './StationItem'
 
-const CreatePage = () =>{
+const AddressViewPage = ({ history, location, match }) =>{
 
-     const history = useHistory()
-     const location = useLocation()
      const [ address, setAddress ] = useState(null)
 
-
-     const show_failure = (id) =>{
-          notify.failure(()=>{
-               return history.push("/admin/addresses")
-          }, "Não foi possível encontrar Endereço", `Id: ${id}`)
+     const show_failure = () =>{
+          notify.failure(()=>  history.push("/admin/addresses") , "Não foi possível encontrar Endereço")
      }
 
      useEffect(()=>{
-
-          const id = queryString.parse(location.search).id
+          const {id} = match.params;
           if(id){
                addressesServices.find(id)
                .then( address => { 
-                    if(!address) show_failure(id);
+                    if(!address) show_failure();
                     setAddress(address)
                })
-               .catch(_=>{show_failure(id)})
+               .catch(_=>{show_failure()})
           }
-
-     },[ location, location.search ])
+     },[ location.pathname ])
 
      
      if( !address) return <LoadingComponenet></LoadingComponenet> 
-     const { id, street, region, uf, number, city, details, postalCode  } = address
+     const { id, street, region, uf, number, city, details, postalCode, stations  } = address
      return (
           <CommonGrid >
 
-               <CommonToolBar>
-                    <button className="" > Nova Estação </button>
-                    <button className="" onClick={()=>history.push(`/admin/addresses/form?id=${id}`)} > Editar </button>
-               </CommonToolBar> 
-
-               <div>
+               <header className="address-view-page-header">
                     <LabelContent label={'Endereço'}> {street}, {number}; {region}.</LabelContent>
                     { details && <LabelContent label={'Complementos'}> {details}</LabelContent>}
                     <LabelContent label={'Cidade'}> {city} - {uf}</LabelContent>
                     <LabelContent label={'CEP'}> {postalCode}</LabelContent>
-               </div>
+               </header>
 
-               <CommonPool>
-                    Aqui tera todas as estações moro
-                   {/*  { addresses.map((a, i)=>( <AddressItem address={a} key={i}></AddressItem> ))} */}
+               <CommonPool lg={1}>
+                     { stations.map((s, i)=>( <StationItem station={s} key={i}></StationItem> ))} 
                </CommonPool>
 
-      
-      
-     
+               <CommonToolBar>
+                    <button className="" onClick={()=>history.push(`/admin/stations/form?address_id=${id}`)} > Adicionar Nova Estação </button>
+               </CommonToolBar> 
+
           </CommonGrid>
      )
 }
 
-export default CreatePage
+export default AddressViewPage

@@ -3,8 +3,7 @@ import './style.css'
 const LabelContent = ({label, children}) =>{
      return (
           <div className="app-label-content">
-               <span>{label}:</span>
-               <span>{children}</span>
+               <span>{label}:</span> {children}
           </div>
      )
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import './style.css'
 import Dialog from '../../Dialog'
-import SuccessImage from './success.webp'
 import { FiAlertCircle, FiUserCheck } from 'react-icons/fi'
 import { GrStatusGood } from 'react-icons/gr'
 
@@ -50,3 +49,4 @@ export default function NotifyDialog ({ content={}, onClose= null, onResult=null
         </Dialog>
     )
 }
+
