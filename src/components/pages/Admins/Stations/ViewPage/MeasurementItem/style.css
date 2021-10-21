@@ -1,0 +1,43 @@
+.admin-station-measurement-view{
+     display: grid;
+     grid-template-columns: 72px 1fr auto;
+     background-color: white;
+     padding: 10px;
+     border-radius: 8px;
+     box-shadow: 0px 1px 2px 1px #0003;
+}
+
+/* .admin-station-measurement-view section:nth-child(1) > :nth-child(1){
+     width: 100%;
+     padding: 8px;
+}
+.admin-address-station-view section:nth-child(2){
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: center;
+     padding: 0 12px;
+}
+.admin-address-station-view section:nth-child(3){
+     height: 100%;
+     display: flex; flex-direction: column;  align-items: flex-start; justify-content: center;
+}
+
+.admin-address-station-view-coordinates{
+     display: flex;
+     flex-direction: row;
+     gap: 8px;
+}
+
+.admin-address-station-view-coordinates > span{
+     font-size: 15px;
+     color: #333;
+}
+
+
+@media screen and (max-width: 1024px){
+     .admin-address-station-view {
+          grid-template-columns: 56px 1fr auto;
+     }     
+} */

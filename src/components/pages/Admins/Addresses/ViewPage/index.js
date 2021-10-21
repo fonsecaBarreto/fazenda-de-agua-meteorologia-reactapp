@@ -34,7 +34,7 @@ const AddressViewPage = ({ history, location, match }) =>{
      if( !address) return <LoadingComponenet></LoadingComponenet> 
      const { id, street, region, uf, number, city, details, postalCode, stations  } = address
      return (
-          <CommonGrid >
+          <CommonGrid>
 
                <header className="address-view-page-header">
                     <LabelContent label={'Endereço'}> {street}, {number}; {region}.</LabelContent>

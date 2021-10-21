@@ -5,7 +5,7 @@ import PrimaryMenu from './PrimaryMenu'
 import PrimaryHeader from './PrimaryHeader'
 import { useSelector  } from 'react-redux'
 const MenuState = () =>{
-    const [ show, setShow ] = useState(true)
+    const [ show, setShow ] = useState(false)
     const toToggle = () => { setShow(!show)  }
     return { show, setShow, toToggle}
 }

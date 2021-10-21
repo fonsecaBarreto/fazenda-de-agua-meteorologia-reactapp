@@ -1,0 +1,32 @@
+#admin-dash-board {
+
+}
+
+
+#admin-dash-board .adb-section{
+     margin-bottom: 20px; 
+}
+
+#admin-dash-board section.adb-section header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+#admin-dash-board section.adb-section header > img{
+     width: 100%;
+     height: 80px;
+     object-fit: contain;
+}
+#admin-dash-board section.adb-section header > h1{
+     font-size: 36px;
+     color: #111;
+     margin: 0;
+     padding: 0;
+}
+ #admin-dash-board section.adb-section span{
+     font-size: 20px;
+     color: #222;
+} 
+

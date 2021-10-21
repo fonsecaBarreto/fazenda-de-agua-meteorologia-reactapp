@@ -6,6 +6,7 @@ import AdddressFormPage from '../components/pages/Admins/Addresses/FormPage'
 import AdddressViewPage from '../components/pages/Admins/Addresses/ViewPage'
 /* Stations */
 import StationFormPage from '../components/pages/Admins/Stations/FormPage'
+import StationViewPage from '../components/pages/Admins/Stations/ViewPage'
 
 import { Link } from 'react-router-dom'
 const InicioComponent =() =>{
@@ -31,7 +32,7 @@ export const admin = {
         { component: AdddressViewPage, path: "/addresses/:id", parent: "/addresses", title: "Visualizar Endereço" },
 
         { component: StationFormPage, path: "/stations/form", parent: "/addresses/:id", title: "Formulário de Estação" },
-        { component: AdddressViewPage, path: "/stations/", parent: "/addresses/view", title: "Visualizar Estação" },
+        { component: StationViewPage, path: "/stations/:id", parent: "/addresses/:id", title: "Visualizar Estação" },
 
      /*    { component: ListAddresses, path: "/users", parent: "/dashboard", title: "Usuarios" },
         { component: ListAddresses, path: "/users/create", parent: "/users", title: "Criar Usuario "},

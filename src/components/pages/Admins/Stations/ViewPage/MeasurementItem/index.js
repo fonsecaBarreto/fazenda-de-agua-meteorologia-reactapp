@@ -1,18 +1,17 @@
 import './style.css'
-import { RiBaseStationFill } from 'react-icons/ri'
-import LabelContent from '../../../../../utils/LabelContent'
 import { useHistory } from 'react-router-dom'
-import OptionButton, { Handler as OBHandler } from '../../../../../global/Options/presentation/OptionButton'
 
-export const StationItem = ({station}) =>{
+export const MeasurementItem = ({measurement}) =>{
 
      const history = useHistory();
 
-     const { id, description, latitude, altitude, longitude } = station
+     const { } = measurement
 
      return (
-          <div className="admin-address-station-view">
-               <section>
+          <div className="admin-station-measurement-view">
+
+               Medições aqui
+             {/*   <section>
                     <RiBaseStationFill></RiBaseStationFill>
                </section>
                <section>
@@ -28,15 +27,15 @@ export const StationItem = ({station}) =>{
                <section>
                     <OptionButton options={
                          [
-                              OBHandler.MakeOption('Abrir', () => history.push(`/admin/stations/${station.id}`) ),
+                              OBHandler.MakeOption('Abrir', () => console.log("Salnado") ),
                               OBHandler.MakeOption('Editar', () => history.push(`/admin/stations/form?id=${station.id}`))
                          ]
                     }></OptionButton>
-               </section>
+               </section> */}
           </div>
      )
 }
 
-export default StationItem
+export default MeasurementItem
 
              

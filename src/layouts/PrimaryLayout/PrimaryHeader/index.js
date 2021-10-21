@@ -39,22 +39,22 @@ function PrimaryHeader ({menuState, currentPage}){
               
                <section>
 
-                    <ToggleButton onClick={menuState.toToggle}></ToggleButton>
-        
                    { currentPage && 
                         <React.Fragment>
-                            { currentPage.breadCrumbs.length > 1 && <button className="primary-header-back-btn desktop-only" onClick={goBack}> 
+                            { currentPage.breadCrumbs.length > 1 && <button className="primary-header-back-btn" onClick={goBack}> 
                                 <IoIosArrowBack></IoIosArrowBack>
                               
                             </button>}
 
                             <div className="primary-header-title">
                                 { currentPage.title && <span className="primary-header-title-label"> { currentPage.title } </span>} 
-                              { currentPage.breadCrumbs && <span className="primary-header-title-bread-crumbs desktop-only">{resolveBread()}</span>} 
+                                { currentPage.breadCrumbs && <span className="primary-header-title-bread-crumbs desktop-only">{resolveBread()}</span>} 
                             </div>
                         </React.Fragment>
                     } 
                 </section> 
+
+                <ToggleButton onClick={menuState.toToggle}></ToggleButton>
             </div>
         </header>
     )
