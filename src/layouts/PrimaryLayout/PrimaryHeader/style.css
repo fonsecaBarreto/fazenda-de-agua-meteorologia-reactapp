@@ -81,7 +81,6 @@
     .primary-header{
         height: var(--header-height-mobile);
         background-color: var(--main-color);
-  
     }
 
     .primary-header-content .primary-header-title, .primary-header-back-btn{

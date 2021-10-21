@@ -1,16 +1,23 @@
 .admins-address-item{
      display: grid;
-     grid-template-columns: 100px 1fr;
+     grid-template-columns: 80px 1fr;
      grid-template-rows: 1fr;
      background-color: white;
      padding: 10px;
+     border-radius: 8px;
+     box-shadow: 0px 1px 2px 1px #0003;
+     gap: 8px;
 }
 
 .admins-address-item > img:nth-child(1){
      width: 100%;
      padding: 15px;
      object-fit: contain;
-     margin-right: auto;
-
+     margin:auto;
 }
 
+@media screen and (max-width: 960px){
+     .admins-address-item{
+          grid-template-columns: 72px 1fr;
+     }
+}

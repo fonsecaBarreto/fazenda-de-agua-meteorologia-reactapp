@@ -4,7 +4,7 @@ import { useState } from 'react'
 const LoginCustomButton = ({children, width="100%", onClick}) =>{
      const [ loading, setLoading ] = useState(false)
      const handleOnClick = () =>{
-          if(loading == true) return;
+          if(loading === true) return;
           setLoading(true);
           onClick().finally(_=>setLoading(false))
      }

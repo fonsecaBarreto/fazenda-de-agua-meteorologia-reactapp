@@ -1,6 +1,10 @@
 import React from 'react'
 import AdminsDashBoard from '../components/pages/Admins/DashBoard'
+
 import ListAddresses from '../components/pages/Admins/Addresses/ListPage'
+import AdddressFormPage from '../components/pages/Admins/Addresses/FormPage'
+import AdddressViewPage from '../components/pages/Admins/Addresses/ViewPage'
+
 import { Link } from 'react-router-dom'
 const InicioComponent =() =>{
      return (<div>
@@ -18,23 +22,23 @@ const Outro =() =>{
 export const admin = {
     prefix: "/admin",
     routes:[
-        { componenet: AdminsDashBoard, path: "/dashboard", title: "Painel Administrativo" },
+        { component: AdminsDashBoard, path: "/dashboard", title: "Painel Administrativo" },
 
-        { componenet: ListAddresses, path: "/addresses", parent: "/dashboard", title:"Endereços" },
-        { componenet: ListAddresses, path: "/addresses/create", parent: "/addresses", title: "Criar Endereços" },
-        { componenet: ListAddresses, path: "/addresses/update", parent: "/addresses", title: "Atualizar Endereço" },
+        { component: ListAddresses, path: "/addresses", parent: "/dashboard", title:"Endereços" },
+        { component: AdddressFormPage, path: "/addresses/form", parent: "/addresses", title: "Formulário de Endereço" },
+        { component: AdddressViewPage, path: "/addresses/view", parent: "/addresses", title: "Visualizar Endereço" },
 
-        { componenet: ListAddresses, path: "/users", parent: "/dashboard", title: "Usuarios" },
-        { componenet: ListAddresses, path: "/users/create", parent: "/users", title: "Criar Usuario "},
-        { componenet: ListAddresses, path: "/users/update", parent: "/users", title:"Atualizar Usuario" }
+        { component: ListAddresses, path: "/users", parent: "/dashboard", title: "Usuarios" },
+        { component: ListAddresses, path: "/users/create", parent: "/users", title: "Criar Usuario "},
+        { component: ListAddresses, path: "/users/update", parent: "/users", title:"Atualizar Usuario" }
     ]
 }
 
 export const basic = {
     prefix: "",
     routes:[    
-        { componenet: InicioComponent, path: "/inicio", title: "Inicio" },
-        { componenet: Outro, path: "/outro", title: "Outro" },
+        { component: InicioComponent, path: "/inicio", title: "Inicio" },
+        { component: Outro, path: "/outro", title: "Outro" },
     ]
 }
 

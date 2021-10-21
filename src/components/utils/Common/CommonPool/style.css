@@ -3,13 +3,12 @@
      display: grid;
      grid-template-columns: 1fr 1fr;
      grid-template-rows: auto;
-     padding: 12px;
      width: 100%;
+     gap: 8px;
 }
 
 @media screen and (max-width: 1024px) {
      .common-pool {
-
           grid-template-columns: 1fr;
      }
 }

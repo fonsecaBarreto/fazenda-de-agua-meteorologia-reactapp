@@ -1,6 +1,6 @@
 import  './style.css'
 
-const CommonPool = ({children}) => {
+export const CommonPool = ({children}) => {
      return (
           <div className="common-pool">
                { children}

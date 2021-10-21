@@ -1,11 +1,4 @@
-
-import { INITIAL_STATE } from './index'
-
-export const closeDialog = () => ({
+export const setDialog = (messages=[], type = 0, onResult= null) => ({
     type: "SET_DIALOG",
-    payload:  { ...INITIAL_STATE.dialog }
-})
-export const setDialog = (content) => ({
-    type: "SET_DIALOG",
-    payload:  { ...INITIAL_STATE.dialog, content: content }
+    payload:  { messages, type, onResult }
 })

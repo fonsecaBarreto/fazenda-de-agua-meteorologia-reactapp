@@ -12,7 +12,7 @@ import Guard from './RouteGuard'
 function Routes({user}){
 
 	const RenderedPages = getRoutesList().map((r,i)=>{
-		const { path, access, componenet: Component, role } = r;
+		const { path, access, component: Component, role } = r;
 		return (
 			<Guard path={path} exact key={i} access={access}>  
 				<Component> </Component>

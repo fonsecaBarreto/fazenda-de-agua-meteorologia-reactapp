@@ -15,13 +15,6 @@ const PrimaryMenu = ({ menuState, currentPage }) =>{
         if(!user) return
         if(user.role === 1) setTree(AdminsMenuTree);
     },[user])
-   /*  const isSelected = (page) => {
-        if( page?.to === currentPage ) return true
-        if( page?.subs ){
-            const subsToList =page.subs.map(p=>(p.to))
-            if(subsToList.includes(currentPage)) return true
-        }
-    } */
 
     return (
     

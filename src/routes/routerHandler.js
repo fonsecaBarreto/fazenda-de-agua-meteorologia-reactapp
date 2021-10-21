@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const INITIAL_CURRENT_PAGE = {
     title: "",
@@ -21,8 +21,8 @@ const RouterState = ( pathname, routes ) =>{
 
     function MakeBread( pathname, breads=[] ) {
 
-        routes.map((r,i)=>{
-            if(r.path == pathname){
+        routes.forEach((r)=>{
+            if(r.path === pathname){
                 breads = [ { value: r.path, label: r.title }, ...breads ]
                 if(r.parent){
                     breads = MakeBread(r.parent, breads) 
@@ -35,8 +35,8 @@ const RouterState = ( pathname, routes ) =>{
     function searchFor(pathname){
 
         var page = null
-        routes.map((r,i)=>{
-            if(r.path == pathname){
+        routes.forEach((r) => {
+            if(r.path === pathname){
                 page = {
                     title: r.title || "Sem nome",
                     breadCrumbs: MakeBread(pathname),
@@ -44,12 +44,9 @@ const RouterState = ( pathname, routes ) =>{
                 } 
             }
         })
-    
         return page
     }
-
     return {  currentPage }
- 
 }
 
 export default RouterState

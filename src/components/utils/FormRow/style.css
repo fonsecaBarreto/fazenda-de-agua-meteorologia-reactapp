@@ -9,8 +9,8 @@
 .form-row label{
     width: fit-content; font-size: 14px;
     letter-spacing: .05em; line-height: 1.2em;
-    margin-bottom: 6px;
-    color: rgb(17, 56, 128);
+    margin-bottom: 4px;
+    color: rgb(14, 25, 46);
     font-weight: bold;
     padding-left: 2px;
     font-family: 'Oxygen', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -84,16 +84,4 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-}
-
-@media only screen and (max-width: 756px){
-    .form-row select, textarea, input[type=text], input[type=password], .text-input{
-      /*   height: 56px; */
-        padding: 0 10px;
-     
-    }
-    .form-row select{
-
-        padding: 12px 8px;
-    }
 }

@@ -55,7 +55,7 @@ const Guard = withRouter(({ history, access, location, component: Component, pat
 
   }
 
-  return <Route location={location} {...rest} render={(props) => ( <Component { ...props } path={path} /> )} ></Route>
+  return (<Route path={path} location={location} {...rest}  ></Route>)
 })
 
 

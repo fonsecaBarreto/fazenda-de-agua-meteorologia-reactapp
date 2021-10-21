@@ -35,21 +35,6 @@ const MenuItem = ({ config, selected, menuState }) =>{
             <span> {label} </span>
         </span>
 
-
-      {/*  { (pages && pages.length > 0 ) &&
-            <div className={`common-menu-item-body ${isExpanded? 'show' : ""}`}>
-               {pages.map((c,i)=>{
-                    if(!c.hide){
-                        return (
-                            <span className={`common-menu-item-body-sub-item`} key={i}  onClick={ () => handleClick(c.path, null)} > 
-                                <span> {c.icon} </span>
-                            <span> {c.title} </span>
-                        </span> )
-                    }
-                })}  
-            </div>
-        } 
- */}
     </li>)
 }
 
