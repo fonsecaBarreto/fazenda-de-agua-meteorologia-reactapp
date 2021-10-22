@@ -3,35 +3,20 @@ import { useHistory } from 'react-router-dom'
 
 export const MeasurementItem = ({measurement}) =>{
 
-     const history = useHistory();
 
-     const { } = measurement
-
+     const { id, temperature, airHumidity, rainVolume, windSpeed, windDirection, coordinates, created_at } = measurement
+ 
      return (
           <div className="admin-station-measurement-view">
 
-               Medições aqui
-             {/*   <section>
-                    <RiBaseStationFill></RiBaseStationFill>
-               </section>
-               <section>
-                    <span> {description} </span>
-                    <LabelContent label="Coordenadas">
-                         <span className="admin-address-station-view-coordinates"> 
-                              <span>( la: {latitude},</span>
-                              <span>lo: {longitude},</span>
-                              <span>al: {altitude} )</span>
-                         </span>
-                    </LabelContent>
-               </section>
-               <section>
-                    <OptionButton options={
-                         [
-                              OBHandler.MakeOption('Abrir', () => console.log("Salnado") ),
-                              OBHandler.MakeOption('Editar', () => history.push(`/admin/stations/form?id=${station.id}`))
-                         ]
-                    }></OptionButton>
-               </section> */}
+               <span> {temperature} </span>
+               <span> {airHumidity} </span>
+               <span> {rainVolume} </span>
+               <span> {windSpeed} </span>
+               <span> {windDirection} </span>
+               <span> {JSON.stringify(coordinates)} </span>
+               <span> {created_at} </span>
+           
           </div>
      )
 }
