@@ -10,10 +10,10 @@ function App(){
   const { user, loading } = useSelector((state)=> state.global)
   return (
     <div className={`App ${loading? 'loading': ''}`}>
-
       <NotificationComponent></NotificationComponent>
       <OptionComponent></OptionComponent>
       <Routes user={user}></Routes> 
+
     </div>
   );
 

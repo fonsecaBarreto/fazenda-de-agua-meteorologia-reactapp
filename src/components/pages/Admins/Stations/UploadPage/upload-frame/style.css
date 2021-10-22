@@ -1,0 +1,27 @@
+.upload-frame{
+     position: relative;
+     width: 100%;
+     overflow: hidden;
+     margin: auto;
+     display: flex;
+     flex-direction: column;
+     gap: 8px;
+     height: 0;
+     width: 100%;
+     height: fit-content;
+}
+
+.upload-frame.freeze::after{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     content: "Uploading...";
+     text-align: center;
+     font-size: 24px;
+     color: rgb(70, 70, 70);
+     position: absolute; top: 0; left: 0;
+     height: 100%; width: 100%;
+     background-color: rgba(243, 243, 243, 0.8);
+ 
+}
+

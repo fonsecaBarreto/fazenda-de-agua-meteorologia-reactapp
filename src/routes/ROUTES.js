@@ -7,6 +7,7 @@ import AdddressViewPage from '../components/pages/Admins/Addresses/ViewPage'
 /* Stations */
 import StationFormPage from '../components/pages/Admins/Stations/FormPage'
 import StationViewPage from '../components/pages/Admins/Stations/ViewPage'
+import StationUploadPage from '../components/pages/Admins/Stations/UploadPage'
 /* Uses */
 
 import UsersPages from '../components/pages/Admins/Users'
@@ -35,6 +36,7 @@ export const admin = {
 
         { component: StationFormPage, path: "/stations/form", parent: "/addresses/:id", title: "Formulário de Estação" },
         { component: StationViewPage, path: "/stations/:id", parent: "/addresses/:id", title: "Visualizar Estação" },
+        { component: StationUploadPage, path: "/stations/:id/upload", parent: "/stations/:id", title: "Upload para Estação" },
 
         { component: UsersPages, path: "/users", parent: "/dashboard", title: "Usuarios" },
      /*
