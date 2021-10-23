@@ -5,8 +5,8 @@ const stationsApi = MakeApiSettings(`${global.base_url}/stations`, errorHandler,
 
 export const stationsService = {
 
-     find:async (id) => {
-          const { data } = await stationsApi.send({ method: "get", url:`/${id}` }) 
+     find:async (id, p) => {
+          const { data } = await stationsApi.send({ method: "get", url:`/${id}?p=${p}` }) 
           return data
      },
 

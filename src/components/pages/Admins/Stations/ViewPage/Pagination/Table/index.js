@@ -1,13 +1,13 @@
 import './style.css'
 export const Table = ({ measurements }) => {
 
-
      return (
           <div className="measurement-table-container">
 
                <table>
                     <thead>
                          <tr>
+                              <th colspan="1">Id</th>
                               <th colspan="1">Temperatura</th>
                               <th>Umidade do Ar</th>
                               <th >Vol. Chuva</th>
@@ -22,6 +22,7 @@ export const Table = ({ measurements }) => {
                          { 
                          measurements.map((m, i)=> ( 
                               <tr key={i}>
+                                    <td>{m.id} </td>
                                     <td>{m.temperature} °C</td>
                           
                                    <td>{m.airHumidity}</td>

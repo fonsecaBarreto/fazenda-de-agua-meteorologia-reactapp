@@ -35,6 +35,7 @@ const CreatePage = () =>{
      useEffect(()=>{
 
           const id = queryString.parse(location.search).id
+          
           if(id){
                setFreeze(true)
                addressesServices.find(id)

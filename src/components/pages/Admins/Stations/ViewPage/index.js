@@ -2,57 +2,70 @@ import './style.css'
 
 import { CommonGrid, CommonToolBar, CommonForm, CommonPool } from '../../../../utils/Common'
 import { Handler as notify } from '../../../../global/Notifications'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import LabelContent from '../../../../utils/LabelContent'
 import LoadingComponenet from '../../../../utils/LoadingComp'
-import MeasurementItem from './MeasurementItem'
 import { stationsService } from '../../../../../services/stations/stations-service'
-import Table from './MeasurementsTable'
+
+import Pagination from './Pagination'
+import queryString from 'query-string';
+
+
+const INITIAL_STATION = {
+     id:"", description:"", latitude:"", longitude:"", altitude:"", address:"", measurements:null
+}
+
+const useLoadContent = ({match, history, location}) =>{
+     const [ loading, setLoading ] = useState(false);
+     const [ station, setStation ] = useState({ ...INITIAL_STATION });
+     
+     const loadContent = () =>{
+          const p = queryString.parse(location.search).p;
+          setLoading(true)
+           stationsService.find(match.params.id, p)
+          .then( station => { 
+               if(!station) throw new Error("Não encontrado.")
+               setStation(station)
+          })
+          .catch(_=>{ notify.failure(()=>history.push("/admin/addresses") , "Estação nao encontrada ") }) 
+          .finally(_=>setLoading(false)) 
+     }
+     useEffect(()=>{ loadContent() },[ location.pathname, location.search ]) // only when pathname changes
+
+     return ( { station, loading }  )
+}
+
+
 const StationViewPage = ({ history, location, match }) =>{
 
-     const [ station, setStation ] = useState(null)
+     const { station, loading } = useLoadContent({match, history, location});
 
-     const show_failure = (id) =>{
-          notify.failure(()=>  history.push("/admin/addresses") , "Estação não encontrada.", !id ? "" : `Não encontramos estação para id: ${id}`)
-     } 
-
-     useEffect(()=>{
-          const {id} = match.params;
-          if(id){
-               stationsService.find(id)
-               .then( station => { 
-                    if(!station) show_failure(id);
-                    setStation(station)
-               })
-               .catch(_=>{show_failure()})
-          }
-     },[ location.pathname ]) 
-
-     
-     if( !station) return <LoadingComponenet></LoadingComponenet> 
-     const { id, description, latitude, longitude, altitude, address, measurements  } = station
+     const { id, description, latitude, longitude, altitude, address, measurements } = station 
 
      return (
           <div className="admin-station-view-page">
+ 
+               { loading ? <LoadingComponenet></LoadingComponenet> :
+               
+                    <CommonGrid >
 
+                         <header>
+                              <div>
+                                   <h2> Sobre a Estação:</h2>
+                                   <LabelContent label={'Descrição'}> {description}.</LabelContent>
+                                   <LabelContent label={'Coordernadas'}> ( {latitude}, {longitude}, {altitude} )</LabelContent>
+                                   <LabelContent label={'Endereço'}> {address.label}</LabelContent>  
+                              </div>
+                         </header>
 
-               <CommonGrid >
-                    <header>
-                         <div>
-                              <h2> Sobre a Estação:</h2>
-                              <LabelContent label={'Descrição'}> {description}.</LabelContent>
-                              <LabelContent label={'Coordernadas'}> ( {latitude}, {longitude}, {altitude} )</LabelContent>
-                              <LabelContent label={'Endereço'}> {address.label}</LabelContent>  
-                         </div>
-                    </header>
+                         <CommonToolBar>
+                              <button onClick={()=>history.push(`/admin/stations/${id}/upload`)}> Upload .Csv </button>
+                         </CommonToolBar>
 
-                    <CommonToolBar>
-                         <button onClick={()=>history.push(`/admin/stations/${id}/upload`)}> Upload .Csv </button>
-                    </CommonToolBar>
-
-                    <Table measurements={measurements}/>
-        
-               </CommonGrid>
+                         <Pagination measurements={measurements}></Pagination>
+               
+                    </CommonGrid>
+              }
           </div>
      )
 }

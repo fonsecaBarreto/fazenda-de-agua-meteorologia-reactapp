@@ -1,0 +1,23 @@
+nav.pagination-buttons {
+     margin-right: auto;
+     width: 100%;
+     display: flex; align-items: center;  justify-content: center;
+     overflow-x: auto;
+
+}
+
+nav.pagination-buttons ul{
+     display: flex;
+     flex-direction: row;
+     list-style: none;
+     padding: 0; margin: 0;
+     gap: 2px;
+}
+
+
+nav.pagination-buttons ul li{
+    padding: 2px;
+}
+nav.pagination-buttons ul li.selected{
+     background-color: red;
+}
