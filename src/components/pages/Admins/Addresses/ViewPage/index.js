@@ -1,5 +1,5 @@
 import './style.css'
-import LocationImage from '../../../../../assets/images/addresses/location.svg'
+import LocationImage from '../../../../../assets/images/pin.png'
 import { CommonGrid, CommonToolBar, CommonForm, CommonPool } from '../../../../utils/Common'
 import { Handler as notify } from '../../../../global/Notifications'
 import { useEffect, useState } from 'react'
@@ -37,19 +37,22 @@ const AddressViewPage = ({ history, location, match }) =>{
           <CommonGrid>
 
                <header className="address-view-page-header">
-                    <LabelContent label={'Endereço'}> {street}, {number}; {region}.</LabelContent>
-                    { details && <LabelContent label={'Complementos'}> {details}</LabelContent>}
-                    <LabelContent label={'Cidade'}> {city} - {uf}</LabelContent>
-                    <LabelContent label={'CEP'}> {postalCode}</LabelContent>
+                    <img src={LocationImage}/>
+                    <section>
+                         <LabelContent label={'Endereço'}> {street}, {number}; {region}.</LabelContent>
+                         { details && <LabelContent label={'Complementos'}> {details}</LabelContent>}
+                         <LabelContent label={'Cidade'}> {city} - {uf}</LabelContent>
+                         <LabelContent label={'CEP'}> {postalCode}</LabelContent>
+                    </section>
                </header>
-
-               <CommonPool lg={1}>
-                     { stations.map((s, i)=>( <StationItem station={s} key={i}></StationItem> ))} 
-               </CommonPool>
 
                <CommonToolBar>
                     <button className="" onClick={()=>history.push(`/admin/stations/form?address_id=${id}`)} > Adicionar Nova Estação </button>
                </CommonToolBar> 
+
+               <CommonPool lg={1}>
+                     { stations.map((s, i)=>( <StationItem station={s} key={i}></StationItem> ))} 
+               </CommonPool>
 
           </CommonGrid>
      )

@@ -8,17 +8,28 @@ import CommonToolBar from '../../../../utils/Common/CommonToolBar'
 import CommonGrid from '../../../../utils/Common/CommonGrid'
 import { useHistory } from 'react-router-dom' 
 import LoadingComp from '../../../../utils/LoadingComp'
+
+const useLoadContent = () =>{
+
+     const [ isLoading, setIsLoading ] = useState(false);
+     const { addresses } = useSelector(state => state.admins)
+
+     const loadContent = () =>{
+          if(addresses.length > 0 ) return
+          setIsLoading(true)
+          addressesServices.list().finally(_=>setIsLoading(false)) 
+     }
+
+     useEffect(()=>{ loadContent() }, [ addresses.length ]) // only when pathname changes
+
+     return ( { addresses, isLoading }  )
+}
+
 const ListAddresses = () =>{
 
      const history = useHistory()
-     const { addresses } = useSelector(state => state.admins)
-     const [ isLoading, setIsLoading ] = useState(false)
-     useEffect(()=>{
-          if(addresses.length === 0 ) {
-               setIsLoading(true)
-               addressesServices.list().finally(()=>setIsLoading(false));
-          }
-     },[addresses.length])
+  
+     const { isLoading, addresses } = useLoadContent()
 
      const goTo = () =>{  history.push('/admin/addresses/form')  }
 

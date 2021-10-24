@@ -8,7 +8,7 @@ const addressesApi = MakeApiSettings(`${global.base_url}/addresses`, errorHandle
 export const addressesServices = {
 
      list:async (view = null) => {
-          const url = view === "labelView" ? `/?v=listview` : '/'
+          const url = view === "labelview" ? `/?v=labelview` : '/'
           const { data } = await addressesApi.send({ method: "get", url }) 
           if(!view) store.dispatch(setAddresses(data));
           return data

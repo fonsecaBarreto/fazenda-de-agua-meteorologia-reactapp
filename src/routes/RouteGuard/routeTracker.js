@@ -3,47 +3,50 @@ import { setCurrentPage } from '../../store/reducers/global/actions'
 import { getRoutesList } from '../ROUTES'
 
 const RouteTracker = (  ) =>{
+
     const dispatch = useDispatch()
     const { currentPage } = useSelector(state=>state.global)
-    function MakeBread( routes, pathname, alias, breads=[]) {
-        routes.forEach((r)=>{
-            if(r.path === pathname){
-                if(r.parent)
-                    breads = MakeBread(routes, r.parent, null, breads);
-                breads = [ ...breads , { value: { to: alias || r.path , path: r.path }, label: r.title }, ]
+
+    function StackRoutes( pathname, alias, breads=[]) {
+        getRoutesList().forEach((r)=>{
+            if (r.path === pathname ) {
+                if(r.parent) 
+                    breads = StackRoutes(r.parent, null, breads);
+                breads = [ ...breads , MakeBreadCrumbs(r.title, alias, r.path) ];
             }
         })
         return breads;
     }
 
+    function MakeBreadCrumbs (label, to, path){
+        return ( { label: label,  value: { to: to || path, path } } )
+    }
+
     const use = (props) =>{
-
-        const routes = getRoutesList()
-        if(!props.title) return;
-
-        const incomming_uri = `${props.location.pathname}${props.location.search}`
+        
+        const to = `${props.location.pathname}${props.location.search}`
         const path = props.computedMatch.path
+        var breadCrumbs = currentPage.breadCrumbs || [];
 
-        var isParent= false;
-        var isSame = false
-        var breadCrumbs
-        if(currentPage.breadCrumbs.length > 0 ){
-            const last = currentPage.breadCrumbs[currentPage.breadCrumbs.length - 1];
-            isParent= (last.value.path === props.parent)
-            isSame = last.value.path === path
-        }
-
-        if(isSame){
-            var clone = [ ...currentPage.breadCrumbs  ] || []
-            clone.pop()
-            breadCrumbs= [ ...clone, { value: { to: incomming_uri, path}, label: props.title } ]
-        }
-        else if(isParent){
-            breadCrumbs = [ ...currentPage.breadCrumbs, { value: { to: incomming_uri, path}, label: props.title } ]
+        if(breadCrumbs.length === 0 ){
+            breadCrumbs = StackRoutes(path, to, []) 
         }else{
-            breadCrumbs = MakeBread(routes, path, incomming_uri);
+            var isParent= false;
+
+            if(breadCrumbs.length > 1) {
+                const before = breadCrumbs[breadCrumbs.length - 2];
+                var isParent = before.value.path === path
+            }
+    
+            const isSame = breadCrumbs[breadCrumbs.length - 1]?.value.path === path;
+            
+            if(isParent || isSame) breadCrumbs.pop()
+            if( !isParent ){
+                breadCrumbs= [ ...breadCrumbs, MakeBreadCrumbs(props.title, to, path) ]
+            }
         }
-        dispatch(setCurrentPage({ title: props.title, breadCrumbs})) 
+
+        dispatch(setCurrentPage({ title: props.title || "Sem titulo", breadCrumbs})) 
     }
 
     return ({ use })

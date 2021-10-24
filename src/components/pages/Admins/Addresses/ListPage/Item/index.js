@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 import LabelContent from '../../../../../utils/LabelContent'
-import LocationImage from '../../../../../../assets/images/addresses/location.svg'
+import LocationImage from '../../../../../../assets/images/pin.png'
 import { useHistory } from 'react-router-dom'
 import OptionButton, { Handler as OBHandler }  from '../../../../../global/Options/presentation/OptionButton'
 const AddressItem = ({address}) =>{

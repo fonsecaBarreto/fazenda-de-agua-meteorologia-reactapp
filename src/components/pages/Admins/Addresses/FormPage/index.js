@@ -87,7 +87,7 @@ const CreatePage = () =>{
                     { state.data.get.id && <button className="warning" onClick={submit_remove}> { 'Remover' } </button>}
                </CommonToolBar>
 
-               <CommonForm title={ state.data.get.id ? "Atualizar Edenreço" : "Novo Endereço"} columns={[4,2,6,2,4,6,6,6]} freeze={freeze}>
+               <CommonForm title={ state.data.get.id ? "Atualizar Endereço" : "Novo Endereço"} columns={[4,2,6,2,4,6,6,6]} freeze={freeze}>
                     <InputAdapter state={state} name={'street'} label="Logradouro"></InputAdapter>
                     <InputAdapter state={state} name={'number'} label="Numero"></InputAdapter>
                     <InputAdapter state={state} name={'region'} label="Bairro"></InputAdapter>

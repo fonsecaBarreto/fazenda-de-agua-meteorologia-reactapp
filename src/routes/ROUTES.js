@@ -9,9 +9,10 @@ import StationFormPage from '../components/pages/Admins/Stations/FormPage'
 import StationViewPage from '../components/pages/Admins/Stations/ViewPage'
 import StationUploadPage from '../components/pages/Admins/Stations/UploadPage'
 /* Uses */
-
-import UsersPages from '../components/pages/Admins/Users'
+import ListUsers from '../components/pages/Admins/Users/ListPage'
+import UsersFormPage from '../components/pages/Admins/Users/FormPage'
 import { Link } from 'react-router-dom'
+
 const InicioComponent =() =>{
      return (<div>
          Inicio Aqui
@@ -38,9 +39,9 @@ export const admin = {
         { component: StationViewPage, path: "/stations/:id", parent: "/addresses/:id", title: "Visualizar Estação" },
         { component: StationUploadPage, path: "/stations/:id/upload", parent: "/stations/:id", title: "Upload para Estação" },
 
-        { component: UsersPages, path: "/users", parent: "/dashboard", title: "Usuarios" },
-     /*
-        { component: ListAddresses, path: "/users/create", parent: "/users", title: "Criar Usuario "},
+        { component: ListUsers, path: "/users", parent: "/dashboard", title: "Usuarios" },
+        { component: UsersFormPage, path: "/users/form", parent: "/users", title: " Formulario de Usuário "},
+        /*
         { component: ListAddresses, path: "/users/update", parent: "/users", title:"Atualizar Usuario" } */
     ]
 }

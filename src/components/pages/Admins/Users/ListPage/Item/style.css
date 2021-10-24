@@ -1,0 +1,33 @@
+.admins-users-item{
+     display: grid;
+     grid-template-columns: 72px 1fr auto;
+     grid-template-rows: 1fr;
+     background-color: white;
+     padding: 10px;
+     border-radius: 4px;
+     box-shadow: 0px 1px 2px 1px #0003;
+     gap: 8px;
+     align-items: center;
+}
+
+
+.admins-users-item > img:nth-child(1){
+     width: 100%;
+     padding: 4px;
+     object-fit: contain;
+     margin:auto;
+}
+
+.admins-users-item > section:nth-child(2){
+     display: flex;
+     flex-direction: column;
+     gap: 4px;
+}
+
+
+
+@media screen and (max-width: 960px){
+     .admins-users-item{
+          grid-template-columns: 64px 1fr auto;
+     }
+}
