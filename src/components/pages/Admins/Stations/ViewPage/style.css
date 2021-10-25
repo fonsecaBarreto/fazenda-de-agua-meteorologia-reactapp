@@ -1,14 +1,5 @@
-.admin-station-view-page{
 
+.admin-station-view-page-header{
+     border-bottom: solid 1px #bbb;
+     padding: 12px 0;
 }
-.admin-station-view-page header{
-     display: flex;
-     flex-direction: column;
-     gap: 12px;
-}
-
-.admin-station-view-page header h2{
-     margin: 0 0 5px ;
-     font-size: 22px;
-}
-

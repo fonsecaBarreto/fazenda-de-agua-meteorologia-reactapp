@@ -11,7 +11,7 @@ const ListUsers = ({ history }) =>{
 
      const { users, isLoading } = InitUsers()
 
-     const goToFormPage = () =>{  history.push('/admin/users/form')  }
+     const goToFormPage = () =>{  history.push('/admin/users/create')  }
 
      return (
           <CommonGrid>

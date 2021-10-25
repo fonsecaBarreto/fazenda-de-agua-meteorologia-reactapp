@@ -40,9 +40,10 @@ export const admin = {
         { component: StationFormPage,   path: "/stations/:id/update", parent: "/addresses/:id", title: "Atualizar Estação" },
         { component: StationUploadPage, path: "/stations/:id/upload", parent: "/stations/:id", title: "Upload para Estação" },
         { component: StationViewPage,   path: "/stations/:id", parent: "/addresses/:id", title: "Visualizar Estação" },
-
+        /* USERS */
         { component: ListUsers, path: "/users", parent: "/dashboard", title: "Usuarios" },
-        { component: UsersFormPage, path: "/users/form", parent: "/users", title: " Formulario de Usuário "},
+        { component: UsersFormPage, path: "/users/create", parent: "/users", title: " Criar Usuário "},
+        { component: UsersFormPage, path: "/users/:id/update", parent: "/users", title: " Atualizar Usuário "},
         /*
         { component: ListAddresses, path: "/users/update", parent: "/users", title:"Atualizar Usuario" } */
     ]

@@ -5,7 +5,7 @@ import { StateAdapter, InputAdapter } from '../../../../utils/Adapters'
 import { addressesServices, stationsService, usersService} from '../../../../../services'
 import { Handler as notify } from '../../../../global/Notifications'
 import queryString from 'query-string';
-import { RemoveUser, SaveUser } from '../methods'
+import { RemoveUser, SaveUser, LoadContent, LoadAddressesLabelView } from '../methods'
 
 const INITIAL_DATA = {
      id: null, 
@@ -19,54 +19,14 @@ const INITIAL_DATA = {
 
 const USERS_ROLES_LIST = [ {value: "0", label: "Básico"}, { value:"1", label: "Administrador" } ];
 
-const LoadContent = ({location, history}) =>{
+const UserFormPage = ({ history, location, match }) =>{
 
-     const [ freeze, setFreeze ] = useState(true)
-     const [ addresses, setAddresses ] = useState([])
-     const [ user, setUser ] = useState(null)
-
-     useEffect(()=>{
-
-          if(addresses.length === 0)
-               addressesServices.list("labelview")
-               .then(setAddresses);
-
-     },[addresses])
-
-     useEffect(()=>{
-
-          const id = queryString.parse(location.search).id
-          if(!id) return setFreeze(false)
-          
-          usersService.find(id)
-          .then( user => { 
-               if(!user) userNotFoundError(id);
-               const role = USERS_ROLES_LIST[user.role]
-               const address = user.address ||  { value: "", label: "" }
-               setUser({ ...user, role, address });
-          })
-          .catch(_=>{userNotFoundError(id)})
-          .finally(_=>{ setFreeze(false) }) 
-
-     },[ location.pathname, location.search ])
-
-     const userNotFoundError = (id) =>{
-          notify.failure(()=> history.push("/admin/users"), "Não foi possível encontrar Usuário", `Id: ${id}`)
-     }
-
-     return ({ user, addresses, freeze, setFreeze })
-}
-
-const UserFormPage = ({ history, location }) =>{
-
-
-     const { user, addresses, freeze, setFreeze } = LoadContent({location, history})
-
+     const { user, freeze, setFreeze } = LoadContent({location, history, match})
+     const { addresses } = LoadAddressesLabelView()
      const state = StateAdapter({...INITIAL_DATA})
 
      useEffect(()=>{
-          if(!user) return
-          state.data.set(user)
+          if(user) return state.data.set(user)
      }, [ user ])
 
      const removeUser = RemoveUser({
@@ -77,7 +37,7 @@ const UserFormPage = ({ history, location }) =>{
      }) 
 
      const saveUser = SaveUser({
-          onSuccess: (data) => history.push(`/admin/users/form?id=${data.id}`),
+          onSuccess: (data) => history.push(`/admin/users/${data.id}/update`),
           onFailure: (err) => { if(err.params) state.errors.set(err.params) },
           before: () => {  setFreeze(true); state.errors.clear(); },
           after: () => setFreeze(false) 

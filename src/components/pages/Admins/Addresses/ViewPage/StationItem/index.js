@@ -1,10 +1,9 @@
 import './style.css'
-import { RiBaseStationFill } from 'react-icons/ri'
-import LabelContent from '../../../../../utils/LabelContent'
 import { useHistory } from 'react-router-dom'
 import OptionButton, { Handler as OBHandler } from '../../../../../global/Options/presentation/OptionButton'
 import { RemoveStation } from '../../../Stations/methods'
-
+import ViewItem from '../../../../../ViewPages/ViewItem'
+import StationImage from '../../../../../../assets/images/station.png'
 export const StationItem = ({station}) =>{
 
      const history = useHistory();
@@ -15,22 +14,9 @@ export const StationItem = ({station}) =>{
           onSuccess: () => history.push(`/admin/addresses/${address_id}?v=reload`),
      })(station)
 
-     return (
-          <div className="admin-address-station-view">
-               <section>
-                    <RiBaseStationFill></RiBaseStationFill>
-               </section>
-               <section>
-                    <span> {description} </span>
-                    <LabelContent label="Coordenadas">
-                         <span className="admin-address-station-view-coordinates"> 
-                              <span>( la: {latitude},</span>
-                              <span>lo: {longitude},</span>
-                              <span>al: {altitude} )</span>
-                         </span>
-                    </LabelContent>
-               </section>
-               <section>
+     return (  <ViewItem img={ StationImage } list={[
+                    {value: description, label: "Descrição"},
+                    {value: `( ${latitude}, ${longitude}, ${altitude} )`, label: "Coordernadas"}]} >
                     <OptionButton options={
                          [
                               OBHandler.MakeOption('Abrir', () => history.push(`/admin/stations/${station.id}`) ),
@@ -38,8 +24,7 @@ export const StationItem = ({station}) =>{
                               OBHandler.MakeOption('Deletar', removeStation)
                          ]
                     }></OptionButton>
-               </section>
-          </div>
+               </ViewItem>
      )
 }
 

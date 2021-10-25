@@ -5,7 +5,7 @@ import LabelContent from '../../../../utils/LabelContent'
 import LoadingComponenet from '../../../../utils/LoadingComp'
 import StationItem from './StationItem'
 import { LoadContent } from '../methods'
-
+import ViewContent from '../../../../ViewPages/ViewContent'
 const AddressViewPage = ({ history, location, match }) =>{
      
      const { address, freeze } = LoadContent({history, location, match})
@@ -16,14 +16,12 @@ const AddressViewPage = ({ history, location, match }) =>{
      return (
           <CommonGrid>
 
-               <header className="address-view-page-header">
-                    <img src={LocationImage}/>
-                    <section>
-                         <LabelContent label={'Endereço'}> {street}, {number}; {region}.</LabelContent>
-                         { details && <LabelContent label={'Complementos'}> {details}</LabelContent>}
-                         <LabelContent label={'Cidade'}> {city} - {uf}</LabelContent>
-                         <LabelContent label={'CEP'}> {postalCode}</LabelContent>
-                    </section>
+               <header className="admin-address-view-page-header">
+                    <ViewContent img={LocationImage} list={[
+                         {label: "Endereço", value: ` ${street} ${number} ${region}`},
+                         {label: "Detalhes", value: ` ${details}`},
+                         {label: "Cidade", value: ` ${city} ${uf}`},
+                         {label: "CEP", value: ` ${postalCode}`}]}/>
                </header>
 
                <CommonToolBar>

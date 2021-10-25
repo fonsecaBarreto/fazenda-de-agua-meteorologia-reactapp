@@ -1,8 +1,5 @@
-.address-view-page-header{
-     font-size: 20px;
-     display: flex;
-     flex-direction: row;
-     align-items: center;
-     justify-content: flex-start;
-     column-gap: 12px;
+
+.admin-address-view-page-header{
+     border-bottom: solid 1px #bbb;
+     padding: 12px 0;
 }

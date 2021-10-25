@@ -8,7 +8,7 @@ import ShieldImage from '../../../../../../assets/images/shield.png'
 import { RemoveUser } from '../../methods/remove_method'
 
 
-const USER_FORM_ROUTE = (id) => `/admin/users/form?id=${id}`;
+const USER_FORM_ROUTE = (id) => `/admin/users/${id}/update`;
 
 const UserItem = ({user}) =>{
 

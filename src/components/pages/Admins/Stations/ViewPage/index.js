@@ -2,14 +2,17 @@ import './style.css'
 
 import { CommonGrid, CommonToolBar } from '../../../../utils/Common'
 import React, { useEffect, useState } from 'react'
-import LabelContent from '../../../../utils/LabelContent'
 import LoadingComponenet from '../../../../utils/LoadingComp'
 import { LoadContent } from '../methods'
 import Pagination from './Pagination'
 
+import ViewContent from '../../../../ViewPages/ViewContent'
+import StationImage from '../../../../../assets/images/station.png'
+
 const INITIAL_STATION = {
      id:"", description:"", latitude:"", longitude:"", altitude:"", address:"", measurements:null
 }
+
  
 const StationViewPage = ({ history, location, match }) =>{
 
@@ -29,12 +32,12 @@ const StationViewPage = ({ history, location, match }) =>{
                { freeze ? <LoadingComponenet></LoadingComponenet> :
                
                     <CommonGrid >
-
-                         <header>
-                              <h2> Sobre a Estação:</h2>
-                              <LabelContent label={'Descrição'}> {description}.</LabelContent>
-                              <LabelContent label={'Coordernadas'}> ( {latitude}, {longitude}, {altitude} )</LabelContent>
-                              <LabelContent label={'Endereço'}> {address.label}</LabelContent>  
+                     
+                         <header className="admin-station-view-page-header">
+                              <ViewContent img={ StationImage } list={[
+                              {value: description, label: "Descrição"},
+                              {value: `( ${latitude}, ${longitude}, ${altitude} )`, label: "Coordernadas"},
+                              {value: address.label, label: "Endereço"}]} />
                          </header>
 
                          <CommonToolBar>

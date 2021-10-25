@@ -1,0 +1,8 @@
+.app-view-item{
+     background-color: white;
+     padding: 12px;
+     border-radius: 6px;
+     box-shadow: 0px 1px 2px 1px #0003;
+     gap: 8px;
+
+}

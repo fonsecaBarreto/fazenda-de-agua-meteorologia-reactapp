@@ -7,14 +7,15 @@ export const Table = ({ measurements }) => {
                <table>
                     <thead>
                          <tr>
-                              <th colspan="1">Id</th>
-                              <th colspan="1">Temperatura</th>
+                              <th>Data</th>
+                     
+                              <th>Temperatura</th>
                               <th>Umidade do Ar</th>
-                              <th >Vol. Chuva</th>
-                              <th colspan="2">Vento</th>
+                              <th>Vol. Chuva</th>
+                              <th>Dir. Vento</th>
+                              <th>Vel. Vento</th>
                
                               <th>Coordenadas</th>
-                              <th>Data</th>
                          </tr>
                     </thead>
 
@@ -22,8 +23,9 @@ export const Table = ({ measurements }) => {
                          { 
                          measurements.map((m, i)=> ( 
                               <tr key={i}>
-                                    <td>{m.id} </td>
-                                    <td>{m.temperature} °C</td>
+                    
+                                   <td>{new Date(m.created_at).toDateString()}</td> 
+                                   <td>{m.temperature} °C</td>
                           
                                    <td>{m.airHumidity}</td>
                                    <td>{m.rainVolume}</td>
@@ -34,7 +36,6 @@ export const Table = ({ measurements }) => {
                                   
                                    <td>({m.coordinates.latitude},{m.coordinates.longitude},{m.coordinates.altitude})</td>
                              
-                                   <td>{new Date(m.created_at).toDateString()}</td> 
                               </tr>
                          ))
                          }
