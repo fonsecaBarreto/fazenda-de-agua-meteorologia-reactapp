@@ -7,6 +7,10 @@ import { ImUsers, ImExit } from 'react-icons/im'
 import { loginServices } from '../../../../services/login-service'
 import { useSelector } from 'react-redux'
 import LogoImage from '../../../../assets/images/heavy-rain.png'
+import UserImage from '../../../../assets/images/user.png'
+import LocationImage from '../../../../assets/images/pin.png'
+import ExitImage from '../../../../assets/images/exit.png'
+
 const AdminsDashBoard = () =>{
 
      const { user } = useSelector((state)=>state.global)
@@ -26,9 +30,9 @@ const AdminsDashBoard = () =>{
                     </section>    
                     
                     <CommonPool>
-                         <Item icon={<MdLocationPin/>} to="/admin/addresses"> Endereços </Item>
-                         <Item icon={<ImUsers/>}to="/admin/users"> Usuarios </Item>
-                         <Item icon={<ImExit/>} onClick={loginServices.logout}> Sair </Item>
+                         <Item img={LocationImage} icon={<MdLocationPin/>} to="/admin/addresses"> Endereços </Item>
+                         <Item img={UserImage} icon={<ImUsers/>}to="/admin/users"> Usuarios </Item>
+                         <Item img={ExitImage} icon={<ImExit/>} onClick={loginServices.logout}> Sair </Item>
                     </CommonPool>
                
 

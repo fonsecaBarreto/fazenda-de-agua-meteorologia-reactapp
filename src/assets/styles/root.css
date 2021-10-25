@@ -1,9 +1,9 @@
 
 :root {
-    --main-color: #085078;
+    --main-color: #4294FE;
+    --second-color: #376CFB;
     --main-light-color: #f12711;
     --main-bg-color: #dde4f1;
-    --second-color: rgb(8, 62, 122);
 
     --header-height-desktop: 60px;
     --header-height-mobile: 70px;

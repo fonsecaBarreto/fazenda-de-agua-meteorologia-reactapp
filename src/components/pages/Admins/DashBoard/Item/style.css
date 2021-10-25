@@ -5,25 +5,29 @@
     grid-template-rows: 1fr;
     align-items: center;
     padding: 12px;
-    gap: 4px;
+    gap: 12px;
     background-color: white;
     text-transform: uppercase;
     font-weight: bold;
-    color: var(--admin-dark-color);
+    color: rgb(10, 58, 129);
     box-shadow: 0px 2px 3px #0003;
     border-radius: 6px;
     text-align: center;
+    align-content: center;
+    justify-content: center;
 }
 
 .dash-item > :nth-child(1){
     height: 64px;
+    width: 100%;
+    object-fit: contain;
 }
 .dash-item > :nth-child(1) > :nth-child(1){  height: 100%; width: 100%; padding: 10px;}
 .dash-item > :nth-child(2){
-    font-size: 24px
+    font-size: 20px;
 }
 .dash-item:hover{
-    outline: solid 4px rgb(13, 74, 143, .15);
+    outline: solid 4px rgba(15, 103, 204, 0.15);
     cursor: pointer;
     transition: all .05s;
 }
