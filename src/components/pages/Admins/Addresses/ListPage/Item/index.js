@@ -4,9 +4,15 @@ import LabelContent from '../../../../../utils/LabelContent'
 import LocationImage from '../../../../../../assets/images/pin.png'
 import { useHistory } from 'react-router-dom'
 import OptionButton, { Handler as OBHandler }  from '../../../../../global/Options/presentation/OptionButton'
+
+import { RemoveAddress } from '../../methods'
+
 const AddressItem = ({address}) =>{
      const history = useHistory();
      const { id, street, region, uf, number, city, details, postalCode  } = address
+
+     const removeAddress = RemoveAddress({}) 
+     
      return (
           <div className="admins-address-item">
                <img alt="ilustrativa do endereço" src={LocationImage}></img>
@@ -21,7 +27,8 @@ const AddressItem = ({address}) =>{
                     <OptionButton options={
                          [
                               OBHandler.MakeOption('Abrir', () =>history.push(`/admin/addresses/${id}`)),
-                              OBHandler.MakeOption('Editar', () =>history.push(`/admin/addresses/form?id=${id}`)),
+                              OBHandler.MakeOption('Editar', () =>history.push(`/admin/addresses/${id}/update`)),
+                              OBHandler.MakeOption('Deletar', () =>removeAddress(address)),
                          ]}
                     ></OptionButton>
 

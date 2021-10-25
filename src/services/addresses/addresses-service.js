@@ -32,8 +32,8 @@ export const addressesServices = {
      }, 
 
      remove: async (address) =>{
-          const { data } = await addressesApi.send({method: "delete", url:`/${address.id}`});
+          await addressesApi.send({method: "delete", url:`/${address.id}`});
           store.dispatch(sliceAddresses(address))
-          return data
+          return 
      }
 }

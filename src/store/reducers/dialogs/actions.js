@@ -3,6 +3,11 @@ export const setNotification = (messages=[], type = 0, onResult= null) => ({
     payload:  { messages, type, onResult }
 })
 
+export const setNotificationLoading = (value=false) => ({
+    type: "SET_NOTIFICATION_LOADING",
+    payload:  value 
+})
+
 export const setOptions = (options=[]) => ({
     type: "SET_OPTIONS",
     payload:  options

@@ -7,12 +7,13 @@ import NotificationComponent from './components/global/Notifications'
 import OptionComponent from './components/global/Options'
 
 function App(){
+
   const { user, loading } = useSelector((state)=> state.global)
   return (
     <div className={`App ${loading? 'loading': ''}`}>
-      <NotificationComponent></NotificationComponent>
-      <OptionComponent></OptionComponent>
-      <Routes user={user}></Routes> 
+    <NotificationComponent></NotificationComponent>
+    <OptionComponent></OptionComponent>
+    <Routes user={user}></Routes> 
 
     </div>
   );
@@ -20,3 +21,9 @@ function App(){
 }
 
 export default App
+
+/*  () => { 
+        toDo( async ()=> { await new Promise(resolve=>{setTimeout(()=> resolve(true),[2000])}) })
+      }
+  
+    */

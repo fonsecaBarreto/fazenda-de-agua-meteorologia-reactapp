@@ -45,8 +45,8 @@ const SelectInput = ({s, n, list, p, label, d }) => {
      </select>)
 }
 
-const ViewBox = ({s, n }) => {
-     return (<input disabled={true} type={'text'} value={s.data.get[n].label} ></input>)
+const ViewBox = ({s, n, p }) => {
+     return (<input disabled={true} type={'text'} defaultValue={s.data.get[n].label || p } ></input>)
 }
 
 export const InputAdapter = ({state, name, label, type = "text", placeholder, list, def }) =>{
@@ -64,7 +64,7 @@ export const InputAdapter = ({state, name, label, type = "text", placeholder, li
                     : type === "selectView" ?
                          <SelectInput s={state} p={placeholder} n={name} list={list} label d={def} ></SelectInput>
                     :  type === "viewbox" ?
-                         <ViewBox s={state} n={name}></ViewBox>
+                         <ViewBox s={state} n={name} p={placeholder}></ViewBox>
                     :  <span> - </span>
                }
           </FormRow>

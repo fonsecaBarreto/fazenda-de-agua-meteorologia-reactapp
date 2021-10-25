@@ -3,12 +3,17 @@ import { RiBaseStationFill } from 'react-icons/ri'
 import LabelContent from '../../../../../utils/LabelContent'
 import { useHistory } from 'react-router-dom'
 import OptionButton, { Handler as OBHandler } from '../../../../../global/Options/presentation/OptionButton'
+import { RemoveStation } from '../../../Stations/methods'
 
 export const StationItem = ({station}) =>{
 
      const history = useHistory();
 
-     const { id, description, latitude, altitude, longitude } = station
+     const { id, description, latitude, altitude, longitude, address_id } = station
+
+     const removeStation = () => RemoveStation({
+          onSuccess: () => history.push(`/admin/addresses/${address_id}?v=reload`),
+     })(station)
 
      return (
           <div className="admin-address-station-view">
@@ -29,7 +34,8 @@ export const StationItem = ({station}) =>{
                     <OptionButton options={
                          [
                               OBHandler.MakeOption('Abrir', () => history.push(`/admin/stations/${station.id}`) ),
-                              OBHandler.MakeOption('Editar', () => history.push(`/admin/stations/form?id=${station.id}`))
+                              OBHandler.MakeOption('Editar', () => history.push(`/admin/stations/${station.id}/update`)),
+                              OBHandler.MakeOption('Deletar', removeStation)
                          ]
                     }></OptionButton>
                </section>

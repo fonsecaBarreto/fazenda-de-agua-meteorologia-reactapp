@@ -23,12 +23,12 @@
 }
 
 .common-tool-bar button.warning{
-      background-color: rgb(153, 79, 84);
+      background-color: rgb(146, 43, 49);
       color: white;
   }
   
   .common-tool-bar button.success{
-     background-color: rgb(77, 153, 113);
+     background-color: var(--main-color);
      color: white;
   }
   
@@ -45,7 +45,7 @@
 }
 
 .common-tool-bar button:hover:after{
-     background-color: rgb(255, 255, 255,.35);
+     background-color: rgb(255, 255, 255,.2);
 }
 
 @media screen and (max-width: 1024px){

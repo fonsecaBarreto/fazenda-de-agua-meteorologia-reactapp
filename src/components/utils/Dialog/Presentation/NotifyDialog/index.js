@@ -3,6 +3,7 @@ import './style.css'
 import Dialog from '../../Dialog'
 import { FiAlertCircle, FiUserCheck } from 'react-icons/fi'
 import { GrStatusGood } from 'react-icons/gr'
+import { BsQuestionOctagon } from 'react-icons/bs'
 
 export const MakeFailure = (messages, title="Atenção!") =>({
     title: title, 
@@ -22,17 +23,26 @@ export const MakeInfo = (messages, title="") => ({
     messages: messages || ["..."]
 })
 
-export default function NotifyDialog ({ content={}, onClose= null, onResult=null, show=false }){
+export const MakeConfirmation = (messages, title="Atenção!") => ({
+    title: title, 
+    icon: <BsQuestionOctagon></BsQuestionOctagon>,
+    messages: messages || ["..."],
+    buttons: [ "Continuar", "Cancelar" ]
+})
 
-    const { title="", icon=null, messages=[] } = content
 
-    const submit = async () =>{
-        onResult && await onResult()
-        return onClose && onClose()
+export default function NotifyDialog ({ content={}, onClose= null, onResult=null, show=false, freeze=false }){
+
+    const { title="", icon=null, messages=[], buttons=["Ok"] } = content
+
+    const submit = async (index) =>{
+        var preventToclose = false
+        if(onResult) { preventToclose = await onResult(index); }
+        if( preventToclose !== true ) return onClose()
     }
 
     return ( 
-        <Dialog show={show} onClose={onClose} title={title || "..."}>
+        <Dialog show={show} onClose={onClose} title={title || "..."} loading={freeze}>
             <div className="notify-dialog"> 
 
                 { icon && <span className="notify-d-icon"> {icon} </span>}
@@ -42,7 +52,7 @@ export default function NotifyDialog ({ content={}, onClose= null, onResult=null
                 </section>
 
                 <section className="notify-d-btns">
-                    <button onClick={submit}> Ok </button>
+                    { buttons.map((b,i)=>( <button onClick={()=>submit(i)} key={i}> {b} </button>)) }
                 </section>
 
             </div>

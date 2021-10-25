@@ -44,6 +44,7 @@
 }
 
 .notify-d-btns button{
+      margin-top: 10px;
     position: relative;
     width: fit-content; height: 38px;
     padding: 0 64px;
@@ -53,24 +54,25 @@
     cursor: pointer;
     z-index: 1;
     border: none;
-    background:#194fcc;
+    background:var(--main-color);
     color: white!important;
+    width: 100%;
+}.notify-d-btns button:hover{
+   outline: solid 2px rgba(44, 86, 148, 0.404) ;
 }
 
-
-.notify-d-btns button:hover{
-   background:#2e63df;
+.notify-d-btns button:nth-child(2){
+   background-color: rgb(161, 33, 33);
 }
 
-
-.notify-d-btns button.cancel{
+/* .notify-d-btns button.cancel{
     background-color: rgb(218, 65, 65);
     color: white;
-}
+} */
 
-.notify-d-btns button.ok{
+/* .notify-d-btns button.ok{
    background-color: rgb(17, 182, 94);
    color: white;
 }
 
-
+ */

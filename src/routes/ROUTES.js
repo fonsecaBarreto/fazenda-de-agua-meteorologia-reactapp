@@ -30,14 +30,16 @@ export const admin = {
     prefix: "/admin",
     routes:[
         { component: AdminsDashBoard, path: "/dashboard", title: "Painel Administrativo" },
-
-        { component: ListAddresses, path: "/addresses", parent: "/dashboard", title:"Endereços" },
-        { component: AdddressFormPage, path: "/addresses/form", parent: "/addresses", title: "Formulário de Endereço" },
+        /* ADRESSES */
+        { component: ListAddresses,    path: "/addresses", parent: "/dashboard", title:"Endereços" },
+        { component: AdddressFormPage, path: "/addresses/create", parent: "/addresses", title: "Criar Endereço" },
+        { component: AdddressFormPage, path: "/addresses/:id/update", parent: "/addresses", title: "Atualizar Endereço" },
         { component: AdddressViewPage, path: "/addresses/:id", parent: "/addresses", title: "Visualizar Endereço" },
-
-        { component: StationFormPage, path: "/stations/form", parent: "/addresses/:id", title: "Formulário de Estação" },
-        { component: StationViewPage, path: "/stations/:id", parent: "/addresses/:id", title: "Visualizar Estação" },
+        /* STATIONS */
+        { component: StationFormPage,   path: "/stations/create", parent: "/addresses/:id", title: "Criar Estação Meteorologia" },
+        { component: StationFormPage,   path: "/stations/:id/update", parent: "/addresses/:id", title: "Atualizar Estação" },
         { component: StationUploadPage, path: "/stations/:id/upload", parent: "/stations/:id", title: "Upload para Estação" },
+        { component: StationViewPage,   path: "/stations/:id", parent: "/addresses/:id", title: "Visualizar Estação" },
 
         { component: ListUsers, path: "/users", parent: "/dashboard", title: "Usuarios" },
         { component: UsersFormPage, path: "/users/form", parent: "/users", title: " Formulario de Usuário "},

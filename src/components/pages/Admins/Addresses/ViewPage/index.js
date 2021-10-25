@@ -1,38 +1,18 @@
 import './style.css'
 import LocationImage from '../../../../../assets/images/pin.png'
-import { CommonGrid, CommonToolBar, CommonForm, CommonPool } from '../../../../utils/Common'
-import { Handler as notify } from '../../../../global/Notifications'
-import { useEffect, useState } from 'react'
-
+import { CommonGrid, CommonToolBar, CommonPool } from '../../../../utils/Common'
 import LabelContent from '../../../../utils/LabelContent'
 import LoadingComponenet from '../../../../utils/LoadingComp'
-
-import { addressesServices } from '../../../../../services/addresses/addresses-service'
 import StationItem from './StationItem'
+import { LoadContent } from '../methods'
 
 const AddressViewPage = ({ history, location, match }) =>{
-
-     const [ address, setAddress ] = useState(null)
-
-     const show_failure = () =>{
-          notify.failure(()=>  history.push("/admin/addresses") , "Não foi possível encontrar Endereço")
-     }
-
-     useEffect(()=>{
-          const {id} = match.params;
-          if(id){
-               addressesServices.find(id)
-               .then( address => { 
-                    if(!address) show_failure();
-                    setAddress(address)
-               })
-               .catch(_=>{show_failure()})
-          }
-     },[ location.pathname ])
-
      
-     if( !address) return <LoadingComponenet></LoadingComponenet> 
-     const { id, street, region, uf, number, city, details, postalCode, stations  } = address
+     const { address, freeze } = LoadContent({history, location, match})
+     if( freeze ) return <LoadingComponenet></LoadingComponenet> 
+     const { id, street, region, uf, number, city, details, postalCode, stations  } = address 
+
+     const goToCreateNewStation = () => history.push(`/admin/stations/create?address_id=${id}`)
      return (
           <CommonGrid>
 
@@ -47,12 +27,12 @@ const AddressViewPage = ({ history, location, match }) =>{
                </header>
 
                <CommonToolBar>
-                    <button className="" onClick={()=>history.push(`/admin/stations/form?address_id=${id}`)} > Adicionar Nova Estação </button>
+                    <button className="" onClick={goToCreateNewStation} > Adicionar Nova Estação </button>
                </CommonToolBar> 
 
                <CommonPool lg={1}>
                      { stations.map((s, i)=>( <StationItem station={s} key={i}></StationItem> ))} 
-               </CommonPool>
+               </CommonPool> 
 
           </CommonGrid>
      )
