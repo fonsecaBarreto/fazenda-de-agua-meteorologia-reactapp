@@ -30,18 +30,18 @@ export const admin = {
     routes:[
         { component: AdminsDashBoard, path: "/dashboard", title: "Painel Administrativo" },
         /* ADRESSES */
-        { component: ListAddresses,    path: "/addresses", parent: "/dashboard", title:"Endereços" },
-        { component: AdddressFormPage, path: "/addresses/create", parent: "/addresses", title: "Criar Endereço" },
+        { component: ListAddresses,    path: "/addresses",            parent: "/dashboard", title:"Endereços" },
+        { component: AdddressFormPage, path: "/addresses/create",     parent: "/addresses", title: "Criar Endereço" },
         { component: AdddressFormPage, path: "/addresses/:id/update", parent: "/addresses", title: "Atualizar Endereço" },
-        { component: AdddressViewPage, path: "/addresses/:id", parent: "/addresses", title: "Visualizar Endereço" },
+        { component: AdddressViewPage, path: "/addresses/:id",        parent: "/addresses", title: "Visualizar Endereço" },
         /* STATIONS */
-        { component: StationFormPage,   path: "/stations/create", parent: "/addresses/:id", title: "Criar Estação Meteorologia" },
-        { component: StationFormPage,   path: "/stations/:id/update", parent: "/addresses/:id", title: "Atualizar Estação" },
-        { component: StationViewPage,   path: "/stations/:id", parent: "/addresses/:id", title: "Visualizar Estação" },
+        { component: StationFormPage,  path: "/stations/create",      parent: "/addresses", title: "Criar Estação Meteorologia" },
+        { component: StationFormPage,  path: "/stations/:id/update",  parent: "/addresses", title: "Atualizar Estação" },
+        { component: StationViewPage,  path: "/stations/:id",         parent: "/addresses", title: "Visualizar Estação" },
         /* USERS */
-        { component: ListUsers, path: "/users", parent: "/dashboard", title: "Usuarios" },
-        { component: UsersFormPage, path: "/users/create", parent: "/users", title: " Criar Usuário "},
-        { component: UsersFormPage, path: "/users/:id/update", parent: "/users", title: " Atualizar Usuário "},
+        { component: ListUsers,        path: "/users",                parent: "/dashboard", title: "Usuarios" },
+        { component: UsersFormPage,    path: "/users/create",         parent: "/users",     title: " Criar Usuário "},
+        { component: UsersFormPage,    path: "/users/:id/update",     parent: "/users",     title: " Atualizar Usuário "},
         /*
         { component: ListAddresses, path: "/users/update", parent: "/users", title:"Atualizar Usuario" } */
     ]

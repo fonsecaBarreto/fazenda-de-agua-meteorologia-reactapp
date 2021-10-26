@@ -31,13 +31,23 @@ const RouteTracker = (  ) =>{
         if(breadCrumbs.length === 0 ){
             breadCrumbs = StackRoutes(path, to, []) 
         }else{
+            var isParentOrSame = breadCrumbs.indexOf(breadCrumbs.find(b=>(b.value.path ===path)))
+            if(isParentOrSame > -1)
+                breadCrumbs = breadCrumbs.filter((b,i)=> i < isParentOrSame); 
+
+            breadCrumbs= [ ...breadCrumbs, MakeBreadCrumbs(props.title, to, path) ] 
+        }
+
+
+      /*   breadCrumbs= [ ...breadCrumbs, MakeBreadCrumbs(props.title, to, path) ]
+ */
+       /*  }else{
             var isParent= false;
 
-            if(breadCrumbs.length > 1) {
-                const before = breadCrumbs[breadCrumbs.length - 2];
-                var isParent = before.value.path === path
-            }
-    
+            var isParent = breadCrumbs.find(b=>(b.value.path ===path))
+
+            breadCrumbs = breadCrumbs.filter((b,i)=>i < breadCrumbs.indexOf(isParent))
+            
             const isSame = breadCrumbs[breadCrumbs.length - 1]?.value.path === path;
             
             if(isParent || isSame) breadCrumbs.pop()
@@ -45,7 +55,7 @@ const RouteTracker = (  ) =>{
                 breadCrumbs= [ ...breadCrumbs, MakeBreadCrumbs(props.title, to, path) ]
             }
         }
-
+ */
         dispatch(setCurrentPage({ title: props.title || "Sem titulo", breadCrumbs})) 
     }
 
