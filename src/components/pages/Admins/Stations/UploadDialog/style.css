@@ -1,0 +1,23 @@
+
+.admin-measurements-dialog{
+     width: 756px;
+}
+
+.admin-measurements-dialog > section:nth-child(1) h2{
+     margin: 0;
+     margin-bottom: 10px;
+}
+
+.admin-measurements-dialog > section:nth-child(2){
+     padding: 10px 0;
+}
+
+@media screen and (max-width: 960px) {
+     
+     .admin-measurements-dialog{
+          width: 100%;
+          border: solid red 2px;
+     }
+}
+
+/* s */

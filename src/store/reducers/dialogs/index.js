@@ -5,7 +5,12 @@ export const INITIAL_STATE = {
     onResult: null,
     isLoading: false
   },
-  options: []  //{label, actions}
+  options: [],  //{label, actions}
+  globalDialog:{
+    content: null,
+    title: null,
+    props: {}
+  }
 }
 
 export const dialogsReducer = (state=INITIAL_STATE, action) => {
@@ -13,6 +18,7 @@ export const dialogsReducer = (state=INITIAL_STATE, action) => {
     case "SET_NOTIFICATION_LOADING": return { ...state, notification:{ ...state.notification, isLoading: action.payload }};
     case "SET_NOTIFICATION": return { ...state, notification: action.payload };
     case "SET_OPTIONS": return { ...state, options: action.payload };
+    case "SET_GLOBAL_DIALOG": return { ...state, globalDialog: action.payload };
     default: return state
   }
 }

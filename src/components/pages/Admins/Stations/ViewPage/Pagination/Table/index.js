@@ -8,13 +8,12 @@ export const Table = ({ measurements }) => {
                     <thead>
                          <tr>
                               <th>Data</th>
-                     
                               <th>Temperatura</th>
                               <th>Umidade do Ar</th>
-                              <th>Vol. Chuva</th>
                               <th>Dir. Vento</th>
                               <th>Vel. Vento</th>
-               
+                              <th>Vol. Chuva</th>
+                              <th>Vol. Acc. Chuva </th>
                               <th>Coordenadas</th>
                          </tr>
                     </thead>
@@ -23,32 +22,30 @@ export const Table = ({ measurements }) => {
                          { 
                          measurements.map((m, i)=> ( 
                               <tr key={i}>
-                    
                                    <td>{new Date(m.created_at).toDateString()}</td> 
                                    <td>{m.temperature} °C</td>
-                          
                                    <td>{m.airHumidity}</td>
-                                   <td>{m.rainVolume}</td>
-                                 
-                                   <td>{m.windSpeed} m/s </td>
-                                   
                                    <td>{m.windDirection}</td>
-                                  
-                                   <td>({m.coordinates.latitude},{m.coordinates.longitude},{m.coordinates.altitude})</td>
-                             
+                                   <td>{m.windSpeed} m/s </td>
+                                   <td>{m.rainVolume}</td>
+                                   <td>{m.accRainVolume} </td>
+                                   <td>{JSON.stringify(m.coordinates)}</td>
                               </tr>
                          ))
                          }
                     </tbody>
-               <tfoot>
-                  {/*   <tr>
-                         <th>Column 1</th>
-                         <th>Column 2</th>
-                         <th>Column 3</th>
-                         <th>Column 4</th>
-                         <th>Column 5</th>
-                    </tr> */}
-               </tfoot>
+              { measurements.length > 0 && <tfoot>
+                    <tr>
+                         <th>Data</th>
+                         <th>Temperatura</th>
+                         <th>Umidade do Ar</th>
+                         <th>Dir. Vento</th>
+                         <th>Vel. Vento</th>
+                         <th>Vol. Chuva</th>
+                         <th>Vol. Acc. Chuva </th>
+                         <th>Coordenadas</th>
+                    </tr>
+               </tfoot>}
                </table>
           </div>
      )

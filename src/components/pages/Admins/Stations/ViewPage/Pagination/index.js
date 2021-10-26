@@ -31,7 +31,6 @@ const MeasurementsPagination =  ({measurements, ...rest}) =>{
 
      return (
           <React.Fragment>
-               <ButtonsNavidator page_index={page_index} page_total={page_total}  onClick={changePage} ></ButtonsNavidator>
                <Table measurements={data}/> 
                <ButtonsNavidator page_index={page_index} page_total={page_total} onClick={changePage}></ButtonsNavidator>
           </React.Fragment>

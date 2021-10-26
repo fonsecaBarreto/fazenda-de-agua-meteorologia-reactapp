@@ -24,10 +24,10 @@ export const stationsService = {
           await stationsApi.send({method: "delete", url:`/${station.id}`});
      },
 
-     saveMeasurements: async (station_id, csvFile) => {
+     saveMeasurements: async (station_id, csvFile, force = 0) => {
           const formData = new FormData();
           formData.append('csv_entry', csvFile)
-          await stationsApi.send({method: "post", url:`/${station_id}/measurements`, data: formData });
+          await stationsApi.send({method: "post", url:`/${station_id}/measurements/multiples?f=${force}`, data: formData });
           return
      }
 }

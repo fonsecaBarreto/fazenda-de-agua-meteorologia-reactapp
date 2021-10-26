@@ -5,25 +5,23 @@ import Routes from './routes/index.js'
 import { useSelector } from 'react-redux'
 import NotificationComponent from './components/global/Notifications'
 import OptionComponent from './components/global/Options'
-
+import GlobalDialog from './components/global/GlobalDialog'
+import {  Handler as GlobalHandler } from './components/global/GlobalDialog'
+import { useState } from 'react'
 function App(){
 
   const { user, loading } = useSelector((state)=> state.global)
+
+
   return (
     <div className={`App ${loading? 'loading': ''}`}>
-    <NotificationComponent></NotificationComponent>
-    <OptionComponent></OptionComponent>
-    <Routes user={user}></Routes> 
-
+      <Routes user={user}></Routes> 
+      <GlobalDialog></GlobalDialog>
+      <OptionComponent></OptionComponent>
+      <NotificationComponent></NotificationComponent>
     </div>
   );
 
 }
 
 export default App
-
-/*  () => { 
-        toDo( async ()=> { await new Promise(resolve=>{setTimeout(()=> resolve(true),[2000])}) })
-      }
-  
-    */

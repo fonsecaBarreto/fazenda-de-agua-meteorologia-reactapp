@@ -10,8 +10,8 @@ export function MakeApiSettings(base_url, errorHelper, storage_key){
         axiosApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       }
 
-  /*     await new Promise(resolve =>{
-        setTimeout(()=>resolve(true),2000)
+  /*    await new Promise(resolve =>{
+        setTimeout(()=>resolve(true),1000)
       })  */
       
       try{ 

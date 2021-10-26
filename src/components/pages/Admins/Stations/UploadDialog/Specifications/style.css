@@ -1,0 +1,35 @@
+.admin-measurements-specification{
+    
+}
+.admin-measurements-specification button{
+     width: 100%;
+     border: none;
+     border-bottom: solid 2px #ddd;
+     cursor: pointer;
+}
+.admin-measurements-specification button:active{
+     background-color: #fff;
+}
+
+
+
+.admin-measurements-specification ol{
+     position: relative;
+     font-size: 15px;
+     padding: 0;
+     padding: 0 12px ;
+}
+
+.admin-measurements-specification ol li {
+     display: grid;
+     grid-template-columns: 120px 1fr;
+     grid-template-rows: 1fr;
+} 
+
+
+.admin-measurements-specification ol li > span{
+     color: #444;
+     font-size: 14px;
+     margin-left: 10px;
+}
+/*  */

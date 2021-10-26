@@ -1,0 +1,46 @@
+.upload-conflcits-section {
+     height: 100%;
+     width: 100%;
+     overflow-y: auto;
+}
+
+.upload-conflcits-section h3 {
+     display: flex; justify-content: flex-start; align-items: center;
+     width: 100%; 
+     gap: 8px;
+     margin: 2px 0 8px;
+     border-bottom: solid 1px #ddd;
+     padding: 0 0 4px;
+
+}
+
+
+.upload-conflcits-section h3 button {
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+}
+
+.upload-conflcits-section ul {
+     margin: 0;
+     margin-bottom: 6px;
+     list-style: none;
+     padding: 0;
+}
+
+
+.upload-conflcits-section ul li{
+     margin: 0;
+     margin-bottom: 6px;
+}
+
+
+.upload-conflcits-section ul li > :nth-child(1){
+     font-weight: bold;
+     color: rgb(102, 15, 15);
+     margin-right: 8px;
+
+}
+.upload-conflcits-section ul li > :nth-child(2){
+     color: rgb(155, 18, 18);
+}

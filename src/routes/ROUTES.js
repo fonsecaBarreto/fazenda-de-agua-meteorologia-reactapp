@@ -7,7 +7,6 @@ import AdddressViewPage from '../components/pages/Admins/Addresses/ViewPage'
 /* Stations */
 import StationFormPage from '../components/pages/Admins/Stations/FormPage'
 import StationViewPage from '../components/pages/Admins/Stations/ViewPage'
-import StationUploadPage from '../components/pages/Admins/Stations/UploadPage'
 /* Uses */
 import ListUsers from '../components/pages/Admins/Users/ListPage'
 import UsersFormPage from '../components/pages/Admins/Users/FormPage'
@@ -38,7 +37,6 @@ export const admin = {
         /* STATIONS */
         { component: StationFormPage,   path: "/stations/create", parent: "/addresses/:id", title: "Criar Estação Meteorologia" },
         { component: StationFormPage,   path: "/stations/:id/update", parent: "/addresses/:id", title: "Atualizar Estação" },
-        { component: StationUploadPage, path: "/stations/:id/upload", parent: "/stations/:id", title: "Upload para Estação" },
         { component: StationViewPage,   path: "/stations/:id", parent: "/addresses/:id", title: "Visualizar Estação" },
         /* USERS */
         { component: ListUsers, path: "/users", parent: "/dashboard", title: "Usuarios" },

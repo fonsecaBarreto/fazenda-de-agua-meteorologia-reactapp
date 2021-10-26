@@ -8,16 +8,15 @@ import Pagination from './Pagination'
 
 import ViewContent from '../../../../ViewPages/ViewContent'
 import StationImage from '../../../../../assets/images/station.png'
+import OpenUploadDialog from '../UploadDialog'
 
 const INITIAL_STATION = {
      id:"", description:"", latitude:"", longitude:"", altitude:"", address:"", measurements:null
 }
-
  
 const StationViewPage = ({ history, location, match }) =>{
 
      const [ station, setStation ] = useState(INITIAL_STATION)
-
      const { station: entry , freeze  } = LoadContent({match, history, location, force: true})
      
      useEffect(()=>{
@@ -37,12 +36,13 @@ const StationViewPage = ({ history, location, match }) =>{
                               <ViewContent img={ StationImage } list={[
                               {value: description, label: "Descrição"},
                               {value: `( ${latitude}, ${longitude}, ${altitude} )`, label: "Coordernadas"},
-                              {value: address.label, label: "Endereço"}]} />
-                         </header>
+                              {value: address.label, label: "Endereço"}]} >
 
-                         <CommonToolBar>
-                              <button onClick={()=>history.push(`/admin/stations/${id}/upload`)}> Upload .Csv </button>
-                         </CommonToolBar>
+                                   <CommonToolBar>
+                                        <button onClick={()=>OpenUploadDialog(id)}> Upload .Csv </button>
+                                   </CommonToolBar>
+                              </ViewContent>
+                         </header>
 
                          <Pagination measurements={measurements}></Pagination>
                
