@@ -4,7 +4,7 @@ import ToggleButton from '../Common/ToggleButton'
 import MenuItem from './Item' 
 import UserComponent from './UserComponent' 
 import { useSelector } from 'react-redux'
-import { AdminsMenuTree }   from './struct'
+import { AdminsMenuTree, UsersMenuTree }   from './struct'
 
 const PrimaryMenu = ({ menuState, currentPage }) =>{
     
@@ -14,6 +14,7 @@ const PrimaryMenu = ({ menuState, currentPage }) =>{
     useEffect(()=>{
         if(!user) return
         if(user.role === 1) setTree(AdminsMenuTree);
+        else if(user.role === 0) setTree(UsersMenuTree);
     },[user])
 
     return (
@@ -25,9 +26,7 @@ const PrimaryMenu = ({ menuState, currentPage }) =>{
 
             <section>
                 <ul> {      
-                    tree.map((p,i) => {
-                        return ( <MenuItem config={p} key={i} menuState={menuState}> </MenuItem>);
-                    }) 
+                    tree.map((p,i) => ( <MenuItem config={p} key={i} menuState={menuState}> </MenuItem>))
                 } </ul>
             </section>
             

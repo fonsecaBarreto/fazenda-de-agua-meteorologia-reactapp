@@ -1,6 +1,7 @@
 import React from 'react'
 import AdminsDashBoard from '../components/pages/Admins/DashBoard'
 
+/* Admin */
 import ListAddresses from '../components/pages/Admins/Addresses/ListPage'
 import AdddressFormPage from '../components/pages/Admins/Addresses/FormPage'
 import AdddressViewPage from '../components/pages/Admins/Addresses/ViewPage'
@@ -10,24 +11,14 @@ import StationViewPage from '../components/pages/Admins/Stations/ViewPage'
 /* Uses */
 import ListUsers from '../components/pages/Admins/Users/ListPage'
 import UsersFormPage from '../components/pages/Admins/Users/FormPage'
-import { Link } from 'react-router-dom'
 
-const InicioComponent =() =>{
-     return (<div>
-         Inicio Aqui
-         <Link to="/outro"> Outro</Link>
-     </div>)
-}
- 
-const Outro =() =>{
-    return (<div>
-        Outro Aqui
-        <Link to="/inicio"> Inico</Link>
-    </div>)
-}
+/* Basic */
+import BasicHome from '../components/pages/Users/Home'
+
 export const admin = {
     prefix: "/admin",
     routes:[
+        /* ADMIN */
         { component: AdminsDashBoard, path: "/dashboard", title: "Painel Administrativo" },
         /* ADRESSES */
         { component: ListAddresses,    path: "/addresses",            parent: "/dashboard", title:"Endereços" },
@@ -50,8 +41,9 @@ export const admin = {
 export const basic = {
     prefix: "",
     routes:[    
-        { component: InicioComponent, path: "/inicio", title: "Inicio" },
-        { component: Outro, path: "/outro", title: "Outro" },
+        { component: BasicHome,        path: "/inicio",       title: "Inicio" },
+        { component: AdddressViewPage, path: "/estacoes",     title: "Meu Endereço" },
+        { component: StationViewPage,  path: "/estacoes/:id", title: "Visualizar Estação" },
     ]
 }
 

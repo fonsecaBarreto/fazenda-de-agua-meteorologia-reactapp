@@ -43,7 +43,6 @@ const RouteState = () =>{
 
 }
 
-
 const Guard = ({ access, component: Component, path, location, ...rest } ) => {
 
   const { use } = RouteTracker()

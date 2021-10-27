@@ -8,7 +8,7 @@ import UnknownFileImage from '../../../../../../../assets/images/files-formats/d
 
 const SubmitArea = ({station_id, file, setFile, setFreeze }) =>{
 
-     const [ toForce, setToForce] = useState(true)
+     const [ toForce, setToForce] = useState(false)
      const [ errors, setErrors ] = useState({})
 
      const submit = () =>{

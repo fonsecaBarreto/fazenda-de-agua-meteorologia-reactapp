@@ -19,6 +19,7 @@
 .form-row select, 
 .form-row textarea, 
 .form-row input[type=text], 
+.form-row input[type=date], 
 .form-row input[type=number], 
 .form-row input[type=password], 
 .form-row .text-input{

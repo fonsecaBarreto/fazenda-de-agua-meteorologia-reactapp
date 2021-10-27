@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './style.css'
 import { CommonGrid, CommonToolBar, CommonForm } from '../../../../utils/Common'
 import { StateAdapter, InputAdapter } from '../../../../utils/Adapters'
-import { addressesServices, stationsService, usersService} from '../../../../../services'
-import { Handler as notify } from '../../../../global/Notifications'
-import queryString from 'query-string';
 import { RemoveUser, SaveUser, LoadContent, LoadAddressesLabelView } from '../methods'
 
 const INITIAL_DATA = {

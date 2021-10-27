@@ -1,0 +1,31 @@
+
+.app-chart-selection-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr;
+    width: 100%;
+    display: flex; flex-direction: row; align-items: center; justify-content: flex-start;
+    gap: 10px;
+}
+
+.app-chart-selection-section section.chart-picker-section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+}
+
+
+@media  screen and (max-width: 960px) {
+
+    .app-chart-selection-section{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+}
+
