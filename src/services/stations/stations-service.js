@@ -10,6 +10,13 @@ export const stationsService = {
           return data
      },
 
+     findStationMetrics:async (id, params) => {
+          const { start_date, intervals, amplitude } = params
+          const s = new Date(start_date).getTime();
+          const { data } = await stationsApi.send({ method: "get", url:`/${id}/metrics?s=${s}&intervals=${intervals}&amplitude=${amplitude}` }) 
+          return data
+     },
+
      save:async (inputs) =>{
           const { id, description, longitude, latitude, altitude, address_id } = inputs;
           const METHOD = id ? 'PUT' : 'POST';

@@ -11,9 +11,9 @@ const Specification = () =>{
                          <li>Data <span>  - ( dd/mm/yyyy ) </span></li>
                          <li>Hora  <span> - ( 00:00:00 )</span> </li>
                          <li>Temperatura  <span> -  ( n ) C°</span></li>
-                         <li>Umidade do Ar <span > - ( n )</span></li>
-                         <li>Dir. Vento   <span> - ('N', 'S', 'L', 'W') </span></li>
-                         <li>Vel. Vento <span>  - ( n ) </span></li>
+                         <li>Umidade do Ar <span > - ( 0-100 ) %</span></li>
+                         <li>Vel. Vento <span>  - ( n ) m/s</span></li>
+                         <li>Dir. Vento   <span> - ( 'N', 'S', 'L', 'W', 'NE', 'SE', 'SW', 'NW' ) </span></li>
                          <li>Vol. Chuva (n) <span> - ( n )  m³ </span></li>
                          <li>Vol. Acc. Chuva <span>-  ( n ) m³</span> </li>
                          <hr></hr>

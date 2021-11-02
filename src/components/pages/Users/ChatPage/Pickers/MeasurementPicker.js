@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { InputAdapter } from '../../../../utils/Adapters/InputsAdapter'
 import FormRow from '../../../../utils/FormRow'
+
 const measurementsData = [
      {label: "Direção do Ventro", value: "windDirection"},
      {label: "Velocidade do Ventro", value: "windSpeed"},
@@ -13,10 +14,10 @@ const measurementsData = [
 
 export const MeasurementPicker = ({state}) =>{
 
-     useEffect(()=>{  state.data.setParam(measurementsData[0])},[]) 
+     useEffect(()=>{ state.fetchConfig.setParam(measurementsData[0]) },[]) 
 
      const handleInputs = (e) =>{
-          state.data.setParam({ 
+          state.fetchConfig.setParam({ 
                value: measurementsData[e.target.options.selectedIndex].value,  
                label: measurementsData[e.target.options.selectedIndex].label 
           })
@@ -25,7 +26,7 @@ export const MeasurementPicker = ({state}) =>{
      return (
           <section className="chart-picker-section">
                <FormRow label="Selecione a informação desejada">
-                    <select value={state.data.get['param'].value} onChange={handleInputs}>
+                    <select value={state.fetchConfig.get['param'].value} onChange={handleInputs}>
                          { measurementsData.map((m, i)=>(
                               <option value={m.value} key={i} >{m.label}</option>))}
                     </select> 

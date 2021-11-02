@@ -35,7 +35,7 @@ const AddressFormPage = ({ location, history, match }) =>{
      }) 
 
      const saveAddress = SaveAddress({
-          onSuccess: (address) => history.push(`/admin/addresses/form?id=${address.id}`),
+          onSuccess: (address) => history.push(`/admin/addresses/${address.id}/update`),
           onFailure: (err) => { if(err.params) state.errors.set(err.params) },
           before: () => { setFreeze(true); state.errors.clear(); },
           after: () => setFreeze(false) 

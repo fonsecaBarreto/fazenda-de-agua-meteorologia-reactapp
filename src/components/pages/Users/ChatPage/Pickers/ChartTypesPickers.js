@@ -1,7 +1,7 @@
 import { ImStatsBars } from 'react-icons/im'
 import { AiOutlineStock, AiOutlineRadarChart } from 'react-icons/ai'
 
-export const ChartTypesPickers = ({state}) =>{
+export const ChartTypesPickers = ({ state }) =>{
 
      const handleClick = (key) =>{
           state.chartConfig.setType(key)

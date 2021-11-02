@@ -1,14 +1,21 @@
 
 import './style.css'
 import CommonGrid from '../../../utils/Common/CommonGrid'
-
 import { Bar, Radar, Line } from 'react-chartjs-2';
 import { MeasurementPicker, StationPicker, DatePickers, ChartTypesPickers } from './Pickers/';
 import ChartState from './GeneralState'
 
-const ChartPage = () =>{
+import { LoadContent } from './methods/LoadContent'
+import LoadingComp from '../../../utils/LoadingComp';
+ 
+import { stationsService } from '../../../../services/'
+import { useEffect } from 'react';
+
+const ChartPage = ({history}) =>{
      
-     const state = ChartState()
+     const { address } = LoadContent({history})
+     const state = ChartState();
+
      const data = canvas => {
 
           return {
@@ -22,16 +29,29 @@ const ChartPage = () =>{
                     borderWidth: 1
                }]
           };
-      }
+     }
+     
+     const submit = async () =>{
+          const { station, time_interval } = state.data.get
+          console.log("about to load")
+    
+          const resultado = await stationsService.findWithTimeInterval(station.value, time_interval) 
+          console.log(resultado)
+     }
 
-      const { chartConfig } = state
-     return (
+/*      useEffect(()=>{
+          if(state.data.get['station'].value) return submit();
+     },[state.data.get['time_interval'], state.data.get['station']]) */
+
+     const { chartConfig } = state
+
+     return ( !address ? <LoadingComp></LoadingComp> : 
           <div>
                <CommonGrid appContainer>
 
                     <section className="app-chart-selection-section">
-                         <StationPicker state={state}/>
-                         <DatePickers state={state}></DatePickers>
+                         <StationPicker state={state} address={address} />
+                         <DatePickers state={state} ></DatePickers> 
                     </section>
 
                     <section className="app-chat-container">
@@ -46,10 +66,11 @@ const ChartPage = () =>{
                     </section>
 
                     <section className="app-chart-selection-section">
-                         <ChartTypesPickers state={state}/> 
-                         <MeasurementPicker state={state}/>
+                         <ChartTypesPickers state={state}/>  
+                         <MeasurementPicker state={state}/> 
                     </section>
 
+                    {JSON.stringify(state.fetchConfig)}
  
                </CommonGrid>
           </div>
