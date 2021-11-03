@@ -3,7 +3,7 @@ import { formatDateToString } from '../filters/FormatDateToString'
 import FormRow from '../../../../utils/FormRow'
 
 import { SCALES_INTERVALS_PRESETS } from '../domain/SCALES_INTERVALS'
-var today = new Date();
+var today = new Date(new Date);
 var MAX_DATE = formatDateToString(today);
 
 export const DatePickers = ({state}) =>{

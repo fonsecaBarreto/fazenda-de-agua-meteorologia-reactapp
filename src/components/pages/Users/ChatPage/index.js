@@ -39,7 +39,7 @@ const ChartPage = ({ history }) =>{
                               <Bar data={chartData} width={100} height={50}/>
                               : chartConfig.get.type == "radar" ?
                               <Radar data={chartData} width={100} height={50}/>
-                              :
+                              : 
                               <Line data={chartData} width={100} height={50}/>
                          }
                     </section>

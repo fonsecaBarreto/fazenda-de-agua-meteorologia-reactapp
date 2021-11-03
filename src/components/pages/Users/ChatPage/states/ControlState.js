@@ -8,9 +8,9 @@ var um_mes_str = formatDateToString(hoje)
 
 const INITIAL_FETCH_CONFIG= {
      station: { label: "", value: "" },
-     param: { label: "", value: "" },
      start_date: um_mes_str,
-     scale_interval: 0
+     scale_interval: 0,
+     param: 0
 }
 
 const INITIAL_CHART_CONFIG={

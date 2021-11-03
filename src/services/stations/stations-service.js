@@ -11,8 +11,12 @@ export const stationsService = {
      },
 
      findStationMetrics:async (id, params) => {
-          const { start_date, intervals, amplitude } = params
-          const s = new Date(start_date).getTime();
+          const { start_date: start_date_str, intervals, amplitude } = params
+
+          var state_date = new Date(start_date_str)
+          state_date.setHours(0, 0, 0, 0);
+
+          const s = state_date.getTime();
           const { data } = await stationsApi.send({ method: "get", url:`/${id}/metrics?s=${s}&intervals=${intervals}&amplitude=${amplitude}` }) 
           return data
      },

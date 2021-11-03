@@ -1,34 +1,19 @@
 import { useEffect } from 'react'
-import { InputAdapter } from '../../../../utils/Adapters/InputsAdapter'
 import FormRow from '../../../../utils/FormRow'
-
-const measurementsData = [
-     {label: "Temperatura", value: "mTemperature"},
-     {label: "Direção do Ventro", value: "mWindDirection"},
-     {label: "Velocidade do Ventro", value: "mWindSpeed"},
-     {label: "Direção do Ventro", value: "mdWindDirection"},
-     {label: "Voluma de Chuva", value: "mRainVolume"},
-     {label: "Voluma de Chuva Acumulada", value: "mAccRainVolume"},
-     {label: "Umidade do ar", value: "mAirHumidity"},
-]
+import { MEASUREMENTS_DATA } from '../domain/SCALES_INTERVALS'
 
 export const MeasurementPicker = ({state}) =>{
 
-     useEffect(()=>{ state.fetchConfig.setParam(measurementsData[0]) },[]) 
-
      const handleInputs = (e) =>{
-          state.fetchConfig.setParam({ 
-               value: measurementsData[e.target.options.selectedIndex].value,  
-               label: measurementsData[e.target.options.selectedIndex].label 
-          })
+          state.fetchConfig.setParam(e.target.options.selectedIndex)
      }
 
      return (
           <section className="chart-picker-section">
                <FormRow label="Selecione a informação desejada">
                     <select value={state.fetchConfig.get['param'].value} onChange={handleInputs}>
-                         { measurementsData.map((m, i)=>(
-                              <option value={m.value} key={i} >{m.label}</option>))}
+                         { MEASUREMENTS_DATA.map((_,i)=>(
+                              <option value={MEASUREMENTS_DATA[i].value} key={i} >{MEASUREMENTS_DATA[i].label}</option>))}
                     </select> 
                </FormRow>
           </section>
