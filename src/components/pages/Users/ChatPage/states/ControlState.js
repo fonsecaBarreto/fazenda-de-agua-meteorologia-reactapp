@@ -1,24 +1,20 @@
 import { useState } from "react"
 
-import { formatDateToString } from '../../../utils/filters/FormatDateToString'
+import { formatDateToString } from '../filters/FormatDateToString'
 
 let hoje = new Date();
-var data_hoje_str = formatDateToString(hoje)
-
 hoje.setDate(hoje.getDate() - 30)
 var um_mes_str = formatDateToString(hoje)     
-
 
 const INITIAL_FETCH_CONFIG= {
      station: { label: "", value: "" },
      param: { label: "", value: "" },
      start_date: um_mes_str,
-     intervals: 1,
-     amplitude: 1,
+     scale_interval: 0
 }
 
 const INITIAL_CHART_CONFIG={
-     type:"bar",
+     type:"bars",
 }
 
 const ChartGeneralState = () =>{
@@ -37,10 +33,10 @@ const ChartGeneralState = () =>{
                get: fetchConfig, 
                setStation : (station) => setFetchConfig(prev=> ({ ...prev, station })) ,
                setParam : (param) => setFetchConfig(prev=> ({ ...prev, param })) ,
-               setIntervals: (intervals) => setFetchConfig(prev=> ({ ...prev, intervals })) ,
-               setAmplitude: (amplitude) => setFetchConfig(prev=> ({ ...prev, amplitude })) ,
+               setScaleInterval: (scale_interval) => setFetchConfig(prev=> ({ ...prev, scale_interval })) ,
                setStartDate: (start_date) => setFetchConfig(prev=>({ ...prev, start_date })),
           },
+
      })
 }
 

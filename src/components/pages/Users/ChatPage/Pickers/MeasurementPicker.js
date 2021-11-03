@@ -3,13 +3,13 @@ import { InputAdapter } from '../../../../utils/Adapters/InputsAdapter'
 import FormRow from '../../../../utils/FormRow'
 
 const measurementsData = [
-     {label: "Direção do Ventro", value: "windDirection"},
-     {label: "Velocidade do Ventro", value: "windSpeed"},
-
-     {label: "Voluma de Chuva", value: "rainVolumne"},
-
-     {label: "Temperatura", value: "temperature"},
-     {label: "Umidade do ar", value: "airHumidity"},
+     {label: "Temperatura", value: "mTemperature"},
+     {label: "Direção do Ventro", value: "mWindDirection"},
+     {label: "Velocidade do Ventro", value: "mWindSpeed"},
+     {label: "Direção do Ventro", value: "mdWindDirection"},
+     {label: "Voluma de Chuva", value: "mRainVolume"},
+     {label: "Voluma de Chuva Acumulada", value: "mAccRainVolume"},
+     {label: "Umidade do ar", value: "mAirHumidity"},
 ]
 
 export const MeasurementPicker = ({state}) =>{

@@ -12,7 +12,7 @@ export const ChartTypesPickers = ({ state }) =>{
           
                <button onClick={()=>handleClick('bars')}> <ImStatsBars/>Barras </button>
                <button onClick={()=>handleClick('lines')}> <AiOutlineStock/>Linhas </button>
-               <button onClick={()=>handleClick('radar')}> <AiOutlineRadarChart/>Radar</button>
+            {/*    <button onClick={()=>handleClick('radar')}> <AiOutlineRadarChart/>Radar</button> */}
      
           </section>
      )

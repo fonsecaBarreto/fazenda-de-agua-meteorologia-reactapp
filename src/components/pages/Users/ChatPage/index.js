@@ -1,47 +1,26 @@
 
 import './style.css'
+import { useEffect } from 'react';
+
 import CommonGrid from '../../../utils/Common/CommonGrid'
 import { Bar, Radar, Line } from 'react-chartjs-2';
 import { MeasurementPicker, StationPicker, DatePickers, ChartTypesPickers } from './Pickers/';
-import ChartState from './GeneralState'
 
-import { LoadContent } from './methods/LoadContent'
+import { LoadContent } from './domain/LoadAddressFromUser'
 import LoadingComp from '../../../utils/LoadingComp';
  
-import { stationsService } from '../../../../services/'
-import { useEffect } from 'react';
+import ChartState from './states/ControlState'
+import StationState from './states/StationState'
 
-const ChartPage = ({history}) =>{
+const ChartPage = ({ history }) =>{
      
-     const { address } = LoadContent({history})
      const state = ChartState();
-
-     const data = canvas => {
-
-          return {
-               labels: ["Dia 01", "Dia 02", "Dia 03", "Dia 04", "Dia 05"],
-               datasets: [{
-                    label: "[Decrição aqui ] ",
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                         'rgba(22, 99, 256, 0.8)',
-                    ],
-                    borderWidth: 1
-               }]
-          };
-     }
+     const { address } = LoadContent({ history })
+     const { chartData, submit } = StationState()
      
-     const submit = async () =>{
-          const { station, time_interval } = state.data.get
-          console.log("about to load")
-    
-          const resultado = await stationsService.findWithTimeInterval(station.value, time_interval) 
-          console.log(resultado)
-     }
-
-/*      useEffect(()=>{
-          if(state.data.get['station'].value) return submit();
-     },[state.data.get['time_interval'], state.data.get['station']]) */
+     useEffect(()=>{
+          if(state.fetchConfig.get['station'].value) return submit(state.fetchConfig.get);
+     },[state.fetchConfig.get])
 
      const { chartConfig } = state
 
@@ -56,12 +35,12 @@ const ChartPage = ({history}) =>{
 
                     <section className="app-chat-container">
                          {
-                              (chartConfig.get.type == "bars") ?
-                              <Bar data={data} width={100} height={50}/>
+                              (chartConfig.get.type === "bars") ?
+                              <Bar data={chartData} width={100} height={50}/>
                               : chartConfig.get.type == "radar" ?
-                              <Radar data={data} width={100} height={50}/>
+                              <Radar data={chartData} width={100} height={50}/>
                               :
-                              <Line data={data} width={100} height={50}/>
+                              <Line data={chartData} width={100} height={50}/>
                          }
                     </section>
 
@@ -69,8 +48,8 @@ const ChartPage = ({history}) =>{
                          <ChartTypesPickers state={state}/>  
                          <MeasurementPicker state={state}/> 
                     </section>
-
-                    {JSON.stringify(state.fetchConfig)}
+                    {JSON.stringify(state)}
+                    {JSON.stringify(chartData)}
  
                </CommonGrid>
           </div>
