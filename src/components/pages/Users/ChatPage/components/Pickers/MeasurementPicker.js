@@ -1,6 +1,5 @@
-import { useEffect } from 'react'
-import FormRow from '../../../../utils/FormRow'
-import { MEASUREMENTS_DATA } from '../domain/SCALES_INTERVALS'
+import FormRow from '../../../../../utils/FormRow'
+import { MEASUREMENTS_DATA } from '../../domain/MODELS'
 
 export const MeasurementPicker = ({state}) =>{
 

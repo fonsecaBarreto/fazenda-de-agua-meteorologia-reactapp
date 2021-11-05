@@ -1,10 +1,11 @@
-import { Handler as notify } from '../../../../global/Notifications'
- 
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { addressesServices } from '../../../../../services'
+/* extern */
+import { Handler as notify } from '../../../../../global/Notifications'
+import { addressesServices } from '../../../../../../services'
 
-export const LoadContent = ({ history }) =>{
+export const LoadAddressFromUser = ({ history }) =>{
+
      const { user } = useSelector(state => state.global)
      const [ freeze, setFreeze ] = useState(false)
      const [ address, setAddress ] = useState(null)
@@ -32,4 +33,4 @@ export const LoadContent = ({ history }) =>{
      return ({ address, freeze, setFreeze, user })
 }
 
-export default LoadContent
+export default LoadAddressFromUser

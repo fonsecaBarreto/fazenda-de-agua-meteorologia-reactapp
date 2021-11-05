@@ -1,6 +1,5 @@
 import { useState } from "react"
-
-import { formatDateToString } from '../filters/FormatDateToString'
+import { formatDateToString } from '../utils/FormatDateToString'
 
 let hoje = new Date();
 hoje.setDate(hoje.getDate() - 30)
